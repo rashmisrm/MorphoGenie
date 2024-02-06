@@ -3,13 +3,13 @@
 Is an integrative deep-learning framework for single-cell morphological profiling.
 
 
-#Setting up MorphoGenie
+# Setting up MorphoGenie
 
-##Requirements
+## Requirements
 
-#Testing with pre-trained models
+# Testing with pre-trained models
 
-##
+## 
 
 
 # ID-GAN
