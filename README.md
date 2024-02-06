@@ -1,6 +1,6 @@
 
 # MorphoGenie
-``` Is an integrative deep-learning framework for single-cell morphological profiling.
+Is an integrative deep-learning framework for single-cell morphological profiling.
 
 
 # ID-GAN
