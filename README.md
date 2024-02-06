@@ -3,6 +3,15 @@
 Is an integrative deep-learning framework for single-cell morphological profiling.
 
 
+#Setting up MorphoGenie
+
+##Requirements
+
+#Testing with pre-trained models
+
+##
+
+
 # ID-GAN
 Pytorch implementation on "High-fidelity Synthesis with Disentangled Representation" (https://arxiv.org/abs/2001.04296). <br>
 For ID-GAN augmented with Variational Discriminator Bottleneck (VDB) or VGAN, please refer to the vgan [branch](https://github.com/1Konny/idgan/tree/vgan).
