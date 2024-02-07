@@ -80,24 +80,12 @@ Results, including checkpoints, tensorboard logs, and images can be found in `ou
 
 # Acknowledgement
 
-## ID-GAN
 Pytorch implementation on "High-fidelity Synthesis with Disentangled Representation" (https://arxiv.org/abs/2001.04296). <br>
-For ID-GAN augmented with Variational Discriminator Bottleneck (VDB) or VGAN, please refer to the vgan [branch](https://github.com/1Konny/idgan/tree/vga).
 
 
-This code is built on the repos as follows:
-1. Beta-VAE: [https://www.github.com/1Konny](https://www.github.com/1Konny)
-2. GAN with R2 regularization: [https://github.com/LMescheder/GAN_stability](https://github.com/LMescheder/GAN_stability)
-3. VGAN: [https://github.com/akanazawa/vgan](https://github.com/akanazawa/vgan) 
+This code is built based on the following code repositories:
+1. Information Distillation GAN (ID-GAN): https://github.com/1Konny/idgan.git
+2. Factor-VAE: [https://github.com/1Konny/FactorVAE.git]
 
-# Citation
-If you find our work useful for your research, please cite our paper.
-```
-@article{lee2020highfidelity, 
-    title={High-Fidelity Synthesis with Disentangled Representation}, 
-    author={Wonkwang Lee and Donggyun Kim and Seunghoon Hong and Honglak Lee}, 
-    year={2020}, 
-    journal={arXiv preprint arXiv:2001.04296}, 
-}
-```
+
 
