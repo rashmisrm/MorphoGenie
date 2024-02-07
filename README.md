@@ -3,15 +3,19 @@
 Is an integrative deep-learning framework for single-cell morphological profiling.
 
 
-# Setting up MorphoGenie
+
 
 ## Requirements
 
-#Install the pytorch cuda version
-Conda create —name MorphoGenie python=3.8.10
-conda install -c anaconda tensorboard
-conda install -c anaconda matplotlib
-conda install -c anaconda scikit-learn
+## Setting up testing environment
+###	Install the pytorch cuda version
+	conda create —name MorphoGenie python=3.8.10
+	
+	conda install -c anaconda tensorboard
+	
+	conda install -c anaconda matplotlib
+	
+	conda install -c anaconda scikit-learn
 
 
 ## Folder structure
@@ -23,22 +27,31 @@ Parent Folder
 		Folder
 			1.jpg
 
-# Testing with pre-trained models
+## Image Preprocessing
+	The single-cell images in the dataset to be tested need to be segmented, cropped and centered.
 
-train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
+## Testing with pre-trained models
+
+	Load the model to test with the desired dataset
+		- Predicted latent factors for downstream analysis
+		- Image reconstructions for interpreting disentangled latent space
+
+
+	train_test.py, args='--config cells_650.yaml --dvae_name <VAE_Model_Name> --name <GAN_Model_Name>', wdir='../MorphoGenie')
 
 ## Pre-processing
-train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
+
 
 ## Lung Cancer Dataset
 
-train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
+	train_test.py, args='--config cells_650.yaml --dvae_name VAE_LC --name GAN_LC', wdir='../MorphoGenie')
+
 ## Cell Painting Assay 
-train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
+	train_test.py, args='--config cells_650.yaml --dvae_name VAE_CPA --name GAN_CPA', wdir='../MorphoGenie')
 
 ## CellCycle 
 
-train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
+	train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
 
 ## Epithelial to Mesenchymal transition
 train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN_Trial3', wdir='../MorphoGenie')
