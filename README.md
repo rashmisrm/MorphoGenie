@@ -31,12 +31,12 @@ Parent Folder
 	The single-cell images in the dataset to be tested need to be segmented, cropped and centered.
 
 ## Testing with pre-trained models
-
+```
 	Load the model to test with the desired dataset
 		- Predicted latent factors for downstream analysis
 		- Image reconstructions for interpreting disentangled latent space
 
-
+```
 	train_test.py, args='--config cells_650.yaml --dvae_name <VAE_Model_Name> --name <GAN_Model_Name>', wdir='../MorphoGenie')
 
 ## Pre-processing
@@ -58,7 +58,9 @@ train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN
 ##	Test Results
 
 ## 	Downstream
+```
 	Downstream analysis is performed by visualizing the disentagled latent space in 2 dimensions using dimensionality reduction technique called UMAP Phate 
+```
 ### 	Lung Cancer 
 
 ###	CPA
