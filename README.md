@@ -58,9 +58,9 @@ train_test.py, args='--config cells_650.yaml --dvae_name cells_trial3 --name GAN
 ##	Test Results
 
 ## 	Downstream
-```
-	Downstream analysis is performed by visualizing the disentagled latent space in 2 dimensions using dimensionality reduction technique called UMAP Phate 
-```
+
+Downstream analysis is performed by visualizing the disentagled latent space in 2 dimensions using dimensionality reduction technique called UMAP Phate 
+
 ### 	Lung Cancer 
 
 ###	CPA
