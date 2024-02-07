@@ -3,7 +3,7 @@
 	Is an integrative deep-learning framework for single-cell morphological profiling.
 	MorphoGenie uses neural network combination of VAE and GAN as porposed in  model in ID-GAN (https://arxiv.org/abs/2001.04296) 
 
-![ezcv logo] (https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Fig-1B.png)
+	![ezcv logo] (https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Fig-1B.png)
 
 ## Requirements
 	Pytorch, Tensorboard, Tested on Windows  
