@@ -66,11 +66,11 @@ train\_test.py, args='--config cells\_650.yaml --dvae\_name VAE\_CPA --name GAN\
 
 train\_test.py, args='--config cells\_650.yaml --dvae\_name cells\_trial3 --name GAN\_Trial3', wdir='../MorphoGenie')
 
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Animation.png)
-
 ## Epithelial to Mesenchymal transition
 
 train\_test.py, args='--config cells\_650.yaml --dvae\_name cells\_trial3 --name GAN\_Trial3', wdir='../MorphoGenie')
+
+
 
 ## Test Results
 
