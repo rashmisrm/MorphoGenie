@@ -85,10 +85,14 @@ Downstream analysis is performed by visualizing the disentagled latent space in 
 #### CellCycle
 
 For datasets the reveal continuous progressions, or develop into pathways, MorphoGenie uses VIA to perform trajectory inference.
+
+
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/AnimateCCy.gif)
 
 #### EMT
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Animate.fig)
+
+
+![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Animate.gif)
 
 
 #### Interpreting Disentangled Latent Space in MorphoGenie
