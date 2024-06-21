@@ -1,10 +1,7 @@
 # MorphoGenie
-#Testing
 MorphoGenie, a new deep learning framework for unsupervised, interpretable single-cell morphological profiling and analysis. MorphoGenie standsout in three key attributes: 
 	(1) High-fidelity Image Reconstruction: MorphoGenie utilizes a hybrid architecture that capitalizes on the unparalleled strengths of the variant of variational Autoencoders (VAEs) and generative Adversarial Networks (GANs) to achieve interpretable, high-quality cell image generation. 
-
 	(2) Interpretability: MorphoGenie adopts a VAE-based method to learn a compact, interpretable, and transferable disentangled representation for single-cell morphological analysis. In contrast to the prior work, we propose a novel technique for interpreting the learned representation by extracting handcrafted features from reconstructed images produced by latent traversals, facilitating the discovery of biologically meaningful inferences, especially the heterogeneities of cell types and lineages. 
-
 	(3) Generalizability: MorphoGenie is widely adaptable across various imaging modalities and experimental conditions, promoting cross-study comparisons and reusable morphological profiling results. The model generalizes to unseen single-cell datasets and different imaging modalities while providing explanations for its predictions. Overall, MorphoGenie could spearhead new strategies for conducting comprehensive morphological profiling and make biologically meaningful discoveries across a wide range of imaging modalities.
 
 
@@ -23,6 +20,8 @@ Setting up testing environment
 Install the pytorch cuda version
 ```
 conda create —name MorphoGenie python=3.8.10
+
+conda activate MorphoGenie
 
 conda install -c anaconda tensorboard
 
@@ -74,7 +73,7 @@ Label3
 ```
 ## Image Preprocessing
 
-The single-cell images in the dataset to be tested are required to be segmented, cropped as a single cell image and centered to avoid biases in training due to positional dependence of the cells.
+The single-cell images in the dataset to be tested are required to be segmented, cropped as a single cell image and centered to avoid biases in training due to positional dependence of the cells. 
 
 
 ## Testing with pre-trained models
