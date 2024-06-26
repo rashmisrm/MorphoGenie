@@ -128,6 +128,7 @@ To test generalizability, the pre-trained model is loaded and latent features ar
 
 
 ### Train models with new datasets
+
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Idgan.png)
 
 - Step 1: Train VAEs.
@@ -137,14 +138,13 @@ To test generalizability, the pre-trained model is loaded and latent features ar
 python dvae\_main.py --dataset [dataset\_name] --name [dvae\_run\_name] --c\_dim [c\_dim] --beta [beta]
 
 ```
-```
 , where `[dataset_name]` can be one of `LC`, `CellCycle`, `CellPainingAssay`, and `EMT`.
 please refer to `dvae_main.py` for the details.
 
 - Stage 2: Train ID-GAN through information distillation loss.
 
-```
 
+```
 python train.py --config [config\_name] --dvae\_name [dvae\_run\_name] --name [idgan\_run\_name]
 
 ```
