@@ -1,4 +1,4 @@
-MorphoGenie - Unsupervised Deep Learning Framework for GENeralizable, Interpretable/Explainable Single-Cell Morphological Profiling
+[MorphoGenie] - Unsupervised Deep Learning Framework for GENeralizable, Interpretable/Explainable Single-Cell Morphological Profiling
 
 MorphoGenie standsout in three key attributes: 
 1. High-fidelity Image Reconstruction: MorphoGenie utilizes a hybrid architecture that capitalizes on the unparalleled strengths of the variant of variational Autoencoders (VAEs) and generative Adversarial Networks (GANs) to achieve interpretable, high-quality cell image generation. 
