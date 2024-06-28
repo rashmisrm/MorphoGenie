@@ -15,7 +15,7 @@ import pandas as pd
 from gan_training import utils
 from gan_training.train import Trainer, update_average
 from gan_training.logger import Logger
-from gan_training.checkpoints import CheckpointIO
+from gan_training.checkpoints_test import CheckpointIO
 from gan_training.inputs import get_dataset
 from gan_training.distributions import get_ydist, get_zdist
 from gan_training.eval_test import DisentEvaluator, Evaluator
@@ -28,10 +28,12 @@ parser = argparse.ArgumentParser(
     description='Train a GAN with different regularization strategies.'
 )
 parser.add_argument('--config_dir', default='./configs', type=str, help='Path to configs directory')
-parser.add_argument('--output_dir', default='Z:/COVID-FTP/Rashmi/ID-GANCheckpoints/outputs/', type=str, help='Path to outputs directory')
-parser.add_argument('--dvae_name', default='none', type=str, help='Name of the experiment for pre-training disentangling VAE')
+parser.add_argument('--output_dir', default='./outputs/', type=str, help='Path to outputs directory')
+parser.add_argument('--models_dir', default='./PretrainedModels/', type=str, help='Path to outputs directory')
+
+parser.add_argument('--VAE_name', default='none', type=str, help='Name of the experiment for pre-training disentangling VAE')
 parser.add_argument('--config', type=str, help='Name of base config file')
-parser.add_argument('--name', type=str, help='Name of the experiment')
+parser.add_argument('--GAN_name', type=str, help='Name of the experiment')
 parser.add_argument('--nf', '--nfilter', default=-1, type=int, help='Base number of filters')
 parser.add_argument('--bs', default=25, type=int, help='Batch size')
 parser.add_argument('--reg_param', default=-1, type=float, help='R1 regularization parameter')
@@ -41,10 +43,11 @@ parser.add_argument('--num_workers', default=0, type=int, help='dataloader num_w
 parser.add_argument('--batch_size', default=1, type=int, help='batch size')
 
 parser.add_argument('--image_size', default=256, type=int, help='Batch size')  # Generator Image size
-parser.add_argument('--dset_dir', default='F:/Rashmi/idgan-master/ProcessedData/', type=str, help='dataset directory')
-parser.add_argument('--dataset', default='CPA/', type=str, help='dataset name') #CellCycle/Vero/LC
-parser.add_argument('--datatype', default='cpa', type=str, help='dataset name')
+parser.add_argument('--dset_dir', default='./ProcessedData/', type=str, help='dataset directory')
+parser.add_argument('--dataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+parser.add_argument('--datatype', default='rgb', type=str, help='dataset name')
 #parser.add_argument('--img_size', default=128, type=int, help='Image synthesis size')##This is the image size for which the autoencoder is designed to
+parser.add_argument('--Traversal', type=str, help='Save Traversal Reconstructions')
 
 parser.add_argument('--nc', default=3, type=int, help='Number of Image channels')
 
@@ -54,6 +57,8 @@ parser.add_argument('--z_dim', default=256, type=int, help='Image synthesis size
 parser.add_argument('--no-cuda', action='store_true', help='Do not use cuda')
 parser.add_argument('--seed', default=1, type=int, help='Random Seed')
 parser.add_argument('--infodistil_mode', default=True, help='Infodistill')
+parser.add_argument('--TestMode', default=True, help='To creane necessary folder to save or load models from')
+
 args = parser.parse_args()
 
 
@@ -68,7 +73,7 @@ config = load_config(config_path)
 is_cuda = (torch.cuda.is_available() and not args.no_cuda)
 
 # = = = = = Customized Configurations = = = = = #
-out_dir = os.path.join(args.output_dir, args.name)
+out_dir = os.path.join(args.output_dir, args.GAN_name)
 config['training']['out_dir'] = out_dir
 if args.nf > 0:
     config['generator']['kwargs']['nfilter'] = args.nf 
@@ -83,8 +88,8 @@ if args.mi > 0:
     max_iter = config['training']['max_iter'] = args.mi
 else:
     max_iter = config['training']['max_iter']
-if args.dvae_name != 'none':
-    config['dvae']['runname'] = args.dvae_name
+if args.VAE_name != 'none':
+    config['dvae']['runname'] = args.VAE_name
 # = = = = = Customized Configurations = = = = = #
 
 # Short hands
@@ -95,13 +100,12 @@ inception_every = config['training']['inception_every']
 save_every = config['training']['save_every']
 backup_every = config['training']['backup_every']
 
-checkpoint_dir = path.join(out_dir, 'chkpts')
+checkpoint_dir = path.join(args.models_dir, args.dataset)
 
 # Create missing directories
 if not path.exists(out_dir):
     os.makedirs(out_dir)
-if not path.exists(checkpoint_dir):
-    os.makedirs(checkpoint_dir)
+
 
 # Logger
 checkpoint_io = CheckpointIO(
@@ -141,7 +145,7 @@ if selectVAE=='dvae':
     dvae.load_state_dict(dvae_ckpt)
 else:
 
-    fvae_ckpt_path = os.path.join(args.output_dir, args.dvae_name,'chkpts', config['fvae']['chkptname'])
+    fvae_ckpt_path = os.path.join(args.models_dir, args.dataset, args.VAE_name,'chkpts', config['fvae']['chkptname'])
 
     fvae_ckpt = torch.load(fvae_ckpt_path)
 
@@ -226,7 +230,7 @@ tstart = t0 = time.time()
 it = epoch_idx = -1
 
 # Load checkpoint if existant
-it = checkpoint_io.load('model.pt')
+it = checkpoint_io.load(args.GAN_name+'/chkpts/model.pt')
 if it != -1:
     logger.load_stats('stats.p')
 
@@ -247,7 +251,7 @@ trainer = Trainer(
 )
 
 # Training loop
-tqdm.write('Start training...')
+tqdm.write('Start Test...')
 pbar = tqdm(total=max_iter)
 if it > 0:
     pbar.update(it)
@@ -257,7 +261,7 @@ mu_real_All=[]
 mu_gen_All=[]
 label1=[]
 label2=[]
-travN_MainDir='./outputs/TraversalLoop/'
+travN_MainDir='./TraversalImages/'
 
 for x_true, path, label in data_loader:
     epoch_idx += 1
@@ -278,8 +282,7 @@ for x_true, path, label in data_loader:
     
     
     mu, c_lat=dis_evaluator.predict_latent(x_true)
-    Traverse=1
-    if Traverse==True:
+    if args.Traversal:
         if epoch_idx < 50:
             
             travN =  epoch_idx
