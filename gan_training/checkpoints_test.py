@@ -8,8 +8,6 @@ class CheckpointIO(object):
         self.module_dict = kwargs
         self.checkpoint_dir = checkpoint_dir
 
-        if not os.path.exists(checkpoint_dir):
-            os.makedirs(checkpoint_dir)
 
     def register_modules(self, **kwargs):
         self.module_dict.update(kwargs)
@@ -27,9 +25,7 @@ class CheckpointIO(object):
 
         if os.path.exists(filename):
             tqdm.write('=> Loading checkpoint...')
-            out_dict = torch.load(filename,map_location='cpu')
-           # out_dict = torch.load(filename)
-
+            out_dict = torch.load(filename)
             it = out_dict['it']
             for k, v in self.module_dict.items():
                 if k in out_dict:
