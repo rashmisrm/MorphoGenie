@@ -26,6 +26,7 @@ import numpy as np
 from gan_training.inputs import get_dataset
 import pandas as pd
 from skimage import color
+import os
 
 
 def truncated_z_sample(batch_size, z_dim, truncation=1., seed=None):
@@ -239,8 +240,12 @@ class DisentEvaluator(object):
                 dvae_samples_p.append(dvae_sample_p)
              
                 if save=='True':
-                    save_path='./outputs/TraversalLoop/'+str(travN)+'/'
-
+                    save_path='./outputs/TraversalLoop/'
+                    if  os.path.exists(save_path)==False:
+                        os.mkdir(save_path)
+                    if  os.path.exists(save_path+str(travN)+'/')==False:
+                        os.mkdir(save_path+str(travN)+'/')
+                        
                     if save_type=='idgan':
                         imagesave=idgan_sample_p_np    
                         imagesave=imagesave.detach().cpu().numpy()
@@ -260,7 +265,7 @@ class DisentEvaluator(object):
                             imagesave=np.swapaxes(imagesave,0,2)  
 
                     val=val.detach().cpu().numpy()
-                    plt.imsave((save_path+ str(c_dim)+'_'+ str(val)+'.png'),imagesave,cmap='gray')
+                    plt.imsave((save_path+str(travN)+'/'+ str(c_dim)+'_'+ str(val)+'.png'),imagesave,cmap='gray')
                     
                 idgan_samples_p.append(idgan_sample_p)
                 idgan_samples_p_np.append(idgan_sample_p_np)
