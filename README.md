@@ -108,6 +108,7 @@ To assess MorphoGenie's generalizability, model pre-trained on a dataset from on
 
 To test generalizability, the pre-trained model is loaded and latent features are predicted by simply inputting the location of a new segmented and pre-processed dataset from an entirely new imaging modality.
 
+![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Generalizability.png)
 
 ## Train models with new datasets
 
