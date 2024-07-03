@@ -71,20 +71,6 @@ Load the pre-trained model and select the dataset for testing. This step generat
 python --config cells_650.yaml --VAE_name LC_VAE --GAN_name LC_GAN  --Traversal=True --dataset=LC
 ```
 
-### Downstream Visualization
-
-Downstream analysis is performed by visualizing the disentagled latent space in 2 dimensions using dimensionality reduction technique called UMAP Phate
-
-For datasets the reveal continuous progressions, or develop into pathways, MorphoGenie uses VIA to perform trajectory inference.
-
-
-
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/AnimateCCy.gif)
-
-
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Animate.gif)
-
-
 ## Interpreting Disentangled Latent Space in MorphoGenie
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
