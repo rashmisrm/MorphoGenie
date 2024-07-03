@@ -32,6 +32,14 @@ conda install -c anaconda matplotlib
 conda install -c anaconda scikit-learn
 ```
 
+### Dataset
+| Dataset       | Folder Name| Imaging Modality |
+| ------------- | -----------|------------------|
+| Lung Cancer   | LC         | QPI              |
+| Cell Painting Assay| CPA   | Fluorescence     |
+| Epithelial to Mesencymal Transition| EMT| Fluorescence|
+| CellCycle     | CCy        | QPI|
+
 ### Folder structure
 
 ```
