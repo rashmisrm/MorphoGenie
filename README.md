@@ -76,7 +76,7 @@ The single-cell images in the dataset to be tested are required to be segmented,
 
 
 ## Testing with pre-trained models
-Load the pre-trained model and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks.
+Load the [pre-trained model](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/EnFvx47idy1MpOjuIdEdYzAB50xStrq6XqEt00ZKqHrC0Q?e=Shah2a) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks.
 
 ```
 python --config cells_650.yaml --VAE_name LC_VAE --GAN_name LC_GAN  --Traversal=True --dataset=LC
