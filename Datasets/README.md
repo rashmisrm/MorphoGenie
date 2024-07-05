@@ -27,7 +27,7 @@ EMT is a critical process underlying various biological phenomena, including emb
 
 
 ### Cell Cycle 
-Cell cycle dataset is imaged using another novel, in-house QPI technique called Free-space Angular-Chirp-Enhanced Delay (FACED). In the work, the multimodal imaging system is integrated with a microfluidic flow cytometer platform enabling synchronized and co-registered single-cell QPI and fluorescence imaging at an imaging throughput of 77 000 cells/s with sub-cellular resolution [37, 39]. In which, a systematic image analysis that correlates the biophysical and biochemical information of cells that reveals new insights into biophysical heterogeneities in many biological processes has been demonstrated for cell cycle dataset of MCF7 and MB231 celltypes.
+Cell cycle dataset is imaged using another novel, QPI technique called Free-space Angular-Chirp-Enhanced Delay (FACED). MorphoGenie reveals new insights and heterogeneities in biological processes for cell cycle dataset of  MB231 celltypes.
 
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/AnimateCCy.gif)
