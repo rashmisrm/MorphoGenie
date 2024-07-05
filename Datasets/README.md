@@ -17,7 +17,8 @@ CPA dataset employed here is a subset of BBBC022, which is a publicly available 
 For datasets the reveal continuous progressions, or develop into pathways, MorphoGenie uses VIA to perform trajectory inference.
 
 ## Cellular Progression Tracking
-Through the integration of MorphoGenie and a trajectory inference technique called [StaVia] (https://www.biorxiv.org/content/10.1101/2024.01.29.577871v1) forms a robust framework for providing holistic visual understanding of the continuous cellular processes with different complexities, as EMT and cell cycle progression studied in this work.
+Through the integration of MorphoGenie and a trajectory inference technique called 
+[StaVia](https://www.biorxiv.org/content/10.1101/2024.01.29.577871v1) forms a robust framework for providing holistic visual understanding of the continuous cellular processes with different complexities, as EMT and cell cycle progression studied in this work.
 
 
 ### Epithelial to Mesenchymal Transition (EMT)
