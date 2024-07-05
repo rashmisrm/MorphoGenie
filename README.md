@@ -33,6 +33,8 @@ conda install -c anaconda scikit-learn
 ```
 
 ### Dataset
+
+The processed datasets are available [here]([StaVia](https://pyvia.readthedocs.io/en/latest/)
 | Dataset       | Folder Name| Imaging Modality |
 | ------------- | -----------|------------------|
 | Lung Cancer   | LC         | QPI              |
@@ -132,10 +134,12 @@ Results, including checkpoints, tensorboard logs, and images can be found in `ou
 
 ## Acknowledgement
 
-Pytorch implementation on "High-fidelity Synthesis with Disentangled Representation" (https://arxiv.org/abs/2001.04296). \<br\>
+Pytorch implementation on "High-fidelity Synthesis with Disentangled Representation" (https://arxiv.org/abs/2001.04296)
 
 This code is built based on the following code repositories:
 
 1. Information Distillation GAN (ID-GAN): https://github.com/1Konny/idgan.git
 
 2. Factor-VAE: [https://github.com/1Konny/FactorVAE.git]
+
+3. StaVia: 
