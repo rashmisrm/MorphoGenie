@@ -111,7 +111,7 @@ To test generalizability, the pre-trained model is loaded and latent features ar
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Idgan.png)
 
-- Step 1: Train VAEs.
+- Step 1: Train VAEs. This step requires setting up an different enviromnent to train the VAE according to: [Factor-VAE] (https://github.com/1Konny/FactorVAE.git)
 
 ```
 
@@ -143,4 +143,3 @@ This code is built based on the following code repositories:
 
 2. Factor-VAE: [https://github.com/1Konny/FactorVAE.git]
 
-3. StaVia: [https://www.biorxiv.org/content/10.1101/2024.01.29.577871v1]
