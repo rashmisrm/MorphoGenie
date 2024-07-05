@@ -34,7 +34,8 @@ conda install -c anaconda scikit-learn
 
 ### Dataset
 
-The processed datasets are available [here](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/El4Ew1HJP5pGgThVYwuaN6kB9cXScl89KL0RSCxRPQr-vg?e=p2cgTt)
+The processed datasets for testing are available [here.](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/El4Ew1HJP5pGgThVYwuaN6kB9cXScl89KL0RSCxRPQr-vg?e=p2cgTt)
+
 | Dataset       | Folder Name| Imaging Modality |
 | ------------- | -----------|------------------|
 | Lung Cancer   | LC         | QPI              |
@@ -71,7 +72,7 @@ Label2
 
 ### Image Preprocessing
 
-The single-cell images in the dataset to be tested are required to be segmented, cropped as a single cell image and centered to avoid biases in training due to positional dependence of the cells. 
+The single-cell images in the dataset to be tested are required to be segmented, cropped as a single cell image. Segmentation is performed using any of the available tools such as Cellpose.
 
 
 ## Testing with pre-trained models
@@ -142,4 +143,4 @@ This code is built based on the following code repositories:
 
 2. Factor-VAE: [https://github.com/1Konny/FactorVAE.git]
 
-3. StaVia: 
+3. StaVia: [https://www.biorxiv.org/content/10.1101/2024.01.29.577871v1]
