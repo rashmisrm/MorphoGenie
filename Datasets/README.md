@@ -23,6 +23,7 @@ Through the integration of MorphoGenie and a trajectory inference technique call
 
 ### Epithelial to Mesenchymal Transition (EMT)
 EMT is a critical process underlying various biological phenomena, including embryonic development, tissue regeneration, and cancer progression. The disentangled representations derived from VIM-RFP-expressing cell images by MorphoGenie can be visualized using a trajectory inference tool called StaVia 
+
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Animate.gif)
 
 
