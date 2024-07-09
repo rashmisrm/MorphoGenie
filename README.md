@@ -13,7 +13,7 @@ MorphoGenie standsout in three key attributes:
 ```
 - Pytorch,
 - Tensorboard,
-- spyder, pandas, matplotlib, seaborn, umap, tsne, phate, numpy
+- spyder, pandas, matplotlib, seaborn, umap, tsne, phate, numpy, tqdm
 Tested on windows
 ```
 ## Setting up testing environment
@@ -30,6 +30,12 @@ conda install -c anaconda tensorboard
 conda install -c anaconda matplotlib
 
 conda install -c anaconda scikit-learn
+
+conda install -c conda-forge tqdm
+
+conda install -c conda-forge umap-forge
+
+conda install -c anaconda scikit-image
 ```
 
 ### Dataset
