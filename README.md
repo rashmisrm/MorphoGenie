@@ -25,10 +25,11 @@ conda create —name MorphoGenie python=3.8.10
 
 conda activate MorphoGenie
 
+conda install -c anaconda pandas matplotlib seaborn umap-learn numpy tqdm scikit-image umap-learn scikit-learn matplotlib pillow
+
 conda install -c anaconda tensorboard
 
-conda install -c anaconda pandas matplotlib seaborn umap numpy tqdm scikit-image umap-learn scikit-learn matplotlib pillow
-
+Install the CUDA version of PyTorch
 ```
 
 ### Dataset
