@@ -29,11 +29,11 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('--config_dir', default='./configs', type=str, help='Path to configs directory')
 parser.add_argument('--output_dir', default='./outputs/', type=str, help='Path to outputs directory')
-parser.add_argument('--models_dir', default='./PretrainedModels/', type=str, help='Path to outputs directory')
+parser.add_argument('--models_dir', default='./Models/', type=str, help='Path to outputs directory')
+parser.add_argument('--GAN_name', default='GAN', type=str, help='Name of the experiment')
+parser.add_argument('--VAE_name', default='VAE', type=str, help='Name of the experiment for pre-training disentangling VAE')
+parser.add_argument('--config', default='cells_650.yaml', type=str, help='Name of base config file')
 
-parser.add_argument('--VAE_name', default='none', type=str, help='Name of the experiment for pre-training disentangling VAE')
-parser.add_argument('--config', type=str, help='Name of base config file')
-parser.add_argument('--GAN_name', type=str, help='Name of the experiment')
 parser.add_argument('--nf', '--nfilter', default=-1, type=int, help='Base number of filters')
 parser.add_argument('--bs', default=25, type=int, help='Batch size')
 parser.add_argument('--reg_param', default=-1, type=float, help='R1 regularization parameter')
@@ -44,9 +44,11 @@ parser.add_argument('--batch_size', default=1, type=int, help='batch size')
 
 parser.add_argument('--image_size', default=256, type=int, help='Batch size')  # Generator Image size
 parser.add_argument('--dset_dir', default='./ProcessedData/', type=str, help='dataset directory')
-parser.add_argument('--dataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+parser.add_argument('--TrainDataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+parser.add_argument('--TestDataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+
 parser.add_argument('--datatype', default='rgb', type=str, help='dataset name')
-#parser.add_argument('--img_size', default=128, type=int, help='Image synthesis size')##This is the image size for which the autoencoder is designed to
+#parser.add_argument('--img_size', default=256, type=int, help='Image synthesis size')##This is the image size for which the autoencoder is designed to
 parser.add_argument('--Traversal', type=str, help='Save Traversal Reconstructions')
 
 parser.add_argument('--nc', default=3, type=int, help='Number of Image channels')
@@ -73,8 +75,9 @@ config = load_config(config_path)
 is_cuda = (torch.cuda.is_available() and not args.no_cuda)
 
 # = = = = = Customized Configurations = = = = = #
-out_dir = os.path.join(args.output_dir, args.GAN_name)
-config['training']['out_dir'] = out_dir
+out_dir = args.output_dir
+
+
 if args.nf > 0:
     config['generator']['kwargs']['nfilter'] = args.nf 
     config['discriminator']['kwargs']['nfilter'] = args.nf 
@@ -100,7 +103,17 @@ inception_every = config['training']['inception_every']
 save_every = config['training']['save_every']
 backup_every = config['training']['backup_every']
 
-checkpoint_dir = path.join(args.models_dir, args.dataset)
+VAE_chkptname='last'
+GAN_chkptname='model.pt'
+data_dir=os.path.join(args.dset_dir,args.TestDataset)
+
+#out_dir = os.path.join(output_dir, name)
+
+fvae_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.VAE_name,'chkpts',VAE_chkptname)
+gan_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.GAN_name,'chkpts', GAN_chkptname)
+
+checkpoint_dir = path.join(args.models_dir, args.TrainDataset)
+
 
 # Create missing directories
 if not path.exists(out_dir):
@@ -109,18 +122,18 @@ if not path.exists(out_dir):
 
 # Logger
 checkpoint_io = CheckpointIO(
-    checkpoint_dir=checkpoint_dir
+    checkpoint_dir=gan_ckpt_path 
 )
 
 device = torch.device("cuda:0" if is_cuda else "cpu")
 
-train_dataset = get_dataset(
+test_dataset = get_dataset(
     name=config['data']['type'],
-    data_dir=args.dset_dir,
+    data_dir=os.path.join(args.dset_dir,args.TestDataset),
     size=args.image_size,
 )
-train_loader = torch.utils.data.DataLoader(
-        train_dataset,
+test_loader = torch.utils.data.DataLoader(
+        test_dataset,
         batch_size=batch_size,
         num_workers=config['training']['nworkers'],
         shuffle=True, pin_memory=True, sampler=None, drop_last=True
@@ -207,7 +220,7 @@ zdist = get_zdist(config['z_dist']['type'], config['z_dist']['dim'],
 
 # Save for tests
 ntest = batch_size
-#x_real, ytest = utils.get_nsamples(train_loader, ntest)
+#x_real, ytest = utils.get_nsamples(test_loader, ntest)
 ztest = zdist.sample((ntest,))
 ctest = cdist.sample((ntest,))
 ztest_ = torch.cat([ztest, ctest], 1)
@@ -230,7 +243,7 @@ tstart = t0 = time.time()
 it = epoch_idx = -1
 
 # Load checkpoint if existant
-it = checkpoint_io.load(args.GAN_name+'/chkpts/model.pt')
+it = checkpoint_io.load(os.getcwd()+gan_ckpt_path)
 if it != -1:
     logger.load_stats('stats.p')
 
