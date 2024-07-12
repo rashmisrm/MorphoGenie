@@ -2,7 +2,7 @@
 import torch
 import torch.utils.data
 import torch.utils.data.distributed
-import torchvision
+#import torchvision
 
 
 def save_images(imgs, outfile, nrow=8):

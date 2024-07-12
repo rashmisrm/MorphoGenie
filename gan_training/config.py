@@ -8,9 +8,9 @@ from gan_training.train import toogle_grad
 
 def load_config(path):
     # with open(DEFAULT_CONFIG, 'r') as f:
-    #     config = yaml.load(f)
+    #     config = yaml.full_load(f)
     with open(path, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.full_load(f)
     # config.update(config_new)
     return config
 

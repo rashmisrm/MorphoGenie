@@ -275,7 +275,7 @@ class DisentEvaluator(object):
         idgan_samples = make_grid(idgan_samples, nrow=ncol, padding=2, pad_value=1)
         plt.figure(figsize=(20,24))
         #plt.imshow(color.rgb2gray(idgan_samples.permute(1, 2, 0)), cmap=cmap)
-        plt.imshow((idgan_samples.permute(1, 2, 0)))
+        #plt.imshow((idgan_samples.permute(1, 2, 0)))
 
         plt.axis('off')
         
