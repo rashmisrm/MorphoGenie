@@ -1,6 +1,6 @@
 # MorphoGenie - Unsupervised Deep Learning Framework for GENeralizable, Interpretable/Explainable Single-Cell Morphological Profiling
 
-The intersection of advanced microscopy and machine learning is transforming the field of cell biology, enabling a more quantitative and data-driven approach. Traditional methods of morphological profiling, which rely on manual feature extraction, are often time-consuming, labor-intensive, and susceptible to human bias. Deep learning offers a promising alternative, but its effectiveness is hindered by the interpretability of its "black-box" operation and its dependence on extensive labeled data. 
+The intersection of advanced microscopy and machine learning is transforming the field of cell biology, enabling a more quantitative and data-driven approach. Traditional methods of morphological profiling, which rely on manual feature extraction, are often time-consuming, labor-intensive, and susceptible to human bias. Deep learning offers a promising alternative, but its effectiveness is hindered by its "black-box" operation and its dependence on extensive labeled data. 
 
 MorphoGenie addresses these challenges by introducing an unsupervised deep-learning framework for single-cell morphological profiling. This innovative tool generates high-fidelity image reconstructions, enabling disentangled representation learning and a compact, interpretable latent space. This allows for the extraction of biologically meaningful features without human annotation, overcoming the "curse of dimensionality" inherent in manual methods.
 
