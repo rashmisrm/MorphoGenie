@@ -22,7 +22,7 @@ Tested on windows
 ```
 ## Setting up testing environment
 
-Install the pytorch cuda version suitable for the OS.
+Install the pytorch cuda version suitable for the OS in MorphoGenie environment [Link](https://pytorch.org/get-started/locally/). 
 
 ```
 conda create —name MorphoGenie python=3.8.10
@@ -34,7 +34,6 @@ conda install -c anaconda pandas=1.4.2 matplotlib=3.5.1 seaborn=0.11.2 umap-lear
 conda install -c anaconda tensorboard
 
 ```
-Install the CUDA version of PyTorch [Link](https://pytorch.org/get-started/locally/)
 
 ### Dataset
 
