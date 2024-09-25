@@ -79,11 +79,13 @@ The single-cell images in the dataset to be tested are required to be segmented,
 
 
 ## Testing with pre-trained models
-Load the [pre-trained model](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/EnFvx47idy1MpOjuIdEdYzAB50xStrq6XqEt00ZKqHrC0Q?e=Shah2a) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks.
+Load the [pre-trained model](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/EnFvx47idy1MpOjuIdEdYzAB50xStrq6XqEt00ZKqHrC0Q?e=Shah2a) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
 ```
 python MorphoGenie_Test.py --config cells_650.yaml --VAE_name LC_VAE --GAN_name LC_GAN  --Traversal=True --dataset=LC
 ```
+
+Alternatively, MorphoGenie_Test.ipynb can be employed for testing the data.
 
 ## Interpreting Disentangled Latent Space in MorphoGenie
 
@@ -92,7 +94,13 @@ python MorphoGenie_Test.py --config cells_650.yaml --VAE_name LC_VAE --GAN_name 
 MorphoGenie's interpretability is enhanced through analysis of how its disentangled latent space relates to the physical characteristics of individual cells. These characteristics are identified through a hierarchical analysis that categorizes features into a structured framework, ranging from subtle textures to more distinct properties like cell size, shape, and density. Using this, MorphoGenie creates a profile called "Interpretation Heatmap" that enables meaningful and biologically relevant interpretations of the disentangled representations.
 
 
-To interpret MorphoGenie's dientangled latent space, traversal reconstructions are saved by setting the flag to True.
+Traversal reconstructions are generated (setting flag Traverse = True) to interpret MorphoGenie's disentangled latent space. The process involves:
+1.⁠ ⁠50 traversal sets
+2.⁠ ⁠Variance matrix computation
+3.⁠ ⁠Averaging for heatmap generation
+
+
+The resulting heatmap reveals latent space structure and feature correlations
 
 ```
 python MorphoGenie_Test.py --config cells_650.yaml --VAE_name LC_VAE --GAN_name LC_GAN  --Traversal=True --dataset=LC
