@@ -101,10 +101,11 @@ To test generalizability, the pre-trained model is loaded and latent features ar
 
 ## Interpreting Disentangled Latent Space in MorphoGenie
 
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
+
 
 MorphoGenie's interpretability is enhanced through analysis of how its disentangled latent space relates to the physical characteristics of individual cells. These characteristics are identified through a hierarchical analysis that categorizes features into a structured framework, ranging from subtle textures to more distinct properties like cell size, shape, and density. Using this, MorphoGenie creates a profile called "Interpretation Heatmap" that enables meaningful and biologically relevant interpretations of the disentangled representations.
 
+![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
 
 Traversal reconstructions are generated (setting flag Traverse = True) to interpret MorphoGenie's disentangled latent space. The process involves:
 1.⁠ ⁠50 traversal sets
