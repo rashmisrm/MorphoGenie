@@ -29,7 +29,7 @@ conda create —name MorphoGenie python=3.8.10
 
 conda activate MorphoGenie
 
-conda install -c anaconda pandas=1.4.2 matplotlib=3.5.1 seaborn=0.11.2 umap-learn=0.5.2 numpy=1.22 tqdm=4.63.0 scikit-image umap-learn scikit-learn=1.0.2 pillow=9.2.0
+conda install -c anaconda pandas=1.4.2 matplotlib=3.5.1 seaborn=0.11.2 umap-learn numpy=1.22 tqdm=4.63.0 scikit-image umap-learn scikit-learn=1.0.2 pillow=9.2.0
 
 conda install -c anaconda tensorboard
 
