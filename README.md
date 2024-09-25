@@ -87,10 +87,6 @@ python MorphoGenie_Test.py --config cells_650.yaml --VAE_name LC_VAE --GAN_name 
 
 Alternatively, MorphoGenie_Test.ipynb can be employed for testing the data.
 
-## Interpreting Disentangled Latent Space in MorphoGenie
-
-![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
-
 
 ## Generalizability
 
@@ -101,6 +97,11 @@ To test generalizability, the pre-trained model is loaded and latent features ar
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Generalizability.png)
 
+
+
+## Interpreting Disentangled Latent Space in MorphoGenie
+
+![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
 
 MorphoGenie's interpretability is enhanced through analysis of how its disentangled latent space relates to the physical characteristics of individual cells. These characteristics are identified through a hierarchical analysis that categorizes features into a structured framework, ranging from subtle textures to more distinct properties like cell size, shape, and density. Using this, MorphoGenie creates a profile called "Interpretation Heatmap" that enables meaningful and biologically relevant interpretations of the disentangled representations.
 
