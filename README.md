@@ -33,9 +33,8 @@ conda install -c anaconda pandas=1.4.2 matplotlib=3.5.1 seaborn=0.11.2 umap-lear
 
 conda install -c anaconda tensorboard
 
-Install the CUDA version of PyTorch [here.](https://pytorch.org/get-started/locally/)
-
 ```
+Install the CUDA version of PyTorch [here.](https://pytorch.org/get-started/locally/)
 
 ### Dataset
 
