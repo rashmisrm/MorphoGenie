@@ -158,7 +158,7 @@ if selectVAE=='dvae':
     dvae.load_state_dict(dvae_ckpt)
 else:
 
-    fvae_ckpt_path = os.path.join(args.models_dir, args.dataset, args.VAE_name,'chkpts', config['fvae']['chkptname'])
+    fvae_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.VAE_name,'chkpts', config['fvae']['chkptname'])
 
     fvae_ckpt = torch.load(fvae_ckpt_path)
 

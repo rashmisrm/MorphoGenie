@@ -228,7 +228,7 @@ class CustomImageFolderCombine3Test(ImageFolder):
             
         return img1, Label1, Label2    
 def return_data(args):
-    name = args.dataset
+    name = args.TestDataset
     imtype= args.datatype
     dset_dir = args.dset_dir
     
@@ -340,7 +340,7 @@ def return_data(args):
 
 
 def return_data_test(args):
-    name = args.dataset
+    name = args.TestDataset
     imtype= args.datatype
     dset_dir = args.dset_dir
     
