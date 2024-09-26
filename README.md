@@ -118,7 +118,7 @@ MorphoGenie's interpretability is enhanced through analysis of how its disentang
 Traversal reconstructions are generated (setting flag Traverse_Save = True) to interpret MorphoGenie's disentangled latent space. 
 
 ```
-python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=True --Train_Dataset=LC --Test_Dataset=CCy
+python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=True --Train_Dataset=LC --Test_Dataset=LC
 ```
 
 The process involves:
