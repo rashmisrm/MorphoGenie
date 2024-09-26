@@ -49,7 +49,7 @@ parser.add_argument('--TestDataset', default='LC/', type=str, help='dataset name
 
 parser.add_argument('--datatype', default='rgb', type=str, help='dataset name')
 #parser.add_argument('--img_size', default=256, type=int, help='Image synthesis size')##This is the image size for which the autoencoder is designed to
-parser.add_argument('--Traversal', type=str, help='Save Traversal Reconstructions')
+parser.add_argument('--Traversal_Save', type=str, help='Save Traversal Reconstructions')
 
 parser.add_argument('--nc', default=3, type=int, help='Number of Image channels')
 
