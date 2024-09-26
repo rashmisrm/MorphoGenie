@@ -35,6 +35,8 @@ conda install -c anaconda tensorboard
 
 ```
 
+Setting up the test environment and installing dependencies can take around 10 minutes.
+
 ### Dataset
 
 The processed datasets for testing are available [here.](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/El4Ew1HJP5pGgThVYwuaN6kB9cXScl89KL0RSCxRPQr-vg?e=p2cgTt)
@@ -79,6 +81,9 @@ The single-cell images in the dataset to be tested are required to be segmented,
 
 
 ## Testing with pre-trained models
+
+Testing dataset comprising 1500 cell images takes 1 minute.
+
 Load the [pre-trained model](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/EnFvx47idy1MpOjuIdEdYzAB50xStrq6XqEt00ZKqHrC0Q?e=Shah2a) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
 ```
