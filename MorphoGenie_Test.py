@@ -44,8 +44,9 @@ parser.add_argument('--batch_size', default=1, type=int, help='batch size')
 
 parser.add_argument('--image_size', default=256, type=int, help='Batch size')  # Generator Image size
 parser.add_argument('--dset_dir', default='./ProcessedData/', type=str, help='dataset directory')
-parser.add_argument('--TrainDataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
-parser.add_argument('--TestDataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+parser.add_argument('--Train_Dataset', default='LC/', type=str, help='dataset name') #CellCycle/Vero/LC
+
+parser.add_argument('--Test_Dataset', default='Batches/', type=str, help='dataset name') #CellCycle/Vero/LC
 
 parser.add_argument('--datatype', default='rgb', type=str, help='dataset name')
 #parser.add_argument('--img_size', default=256, type=int, help='Image synthesis size')##This is the image size for which the autoencoder is designed to
@@ -105,14 +106,14 @@ backup_every = config['training']['backup_every']
 
 VAE_chkptname='last'
 GAN_chkptname='model.pt'
-data_dir=os.path.join(args.dset_dir,args.TestDataset)
+data_dir=os.path.join(args.dset_dir,args.Test_Dataset)
 
 #out_dir = os.path.join(output_dir, name)
 
-fvae_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.VAE_name,'chkpts',VAE_chkptname)
-gan_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.GAN_name,'chkpts', GAN_chkptname)
+fvae_ckpt_path = os.path.join(args.models_dir, args.Train_Dataset, args.VAE_name,'chkpts',VAE_chkptname)
+gan_ckpt_path = os.path.join(args.models_dir, args.Train_Dataset, args.GAN_name,'chkpts', GAN_chkptname)
 
-checkpoint_dir = path.join(args.models_dir, args.TrainDataset)
+checkpoint_dir = path.join(args.models_dir, args.Train_Dataset)
 
 
 # Create missing directories
@@ -129,7 +130,7 @@ device = torch.device("cuda:0" if is_cuda else "cpu")
 
 test_dataset = get_dataset(
     name=config['data']['type'],
-    data_dir=os.path.join(args.dset_dir,args.TestDataset),
+    data_dir=os.path.join(args.dset_dir,args.Test_Dataset),
     size=args.image_size,
 )
 test_loader = torch.utils.data.DataLoader(
@@ -158,7 +159,7 @@ if selectVAE=='dvae':
     dvae.load_state_dict(dvae_ckpt)
 else:
 
-    fvae_ckpt_path = os.path.join(args.models_dir, args.TrainDataset, args.VAE_name,'chkpts', config['fvae']['chkptname'])
+    fvae_ckpt_path = os.path.join(args.models_dir, args.Train_Dataset, args.VAE_name,'chkpts', config['fvae']['chkptname'])
 
     fvae_ckpt = torch.load(fvae_ckpt_path)
 
@@ -295,7 +296,7 @@ for x_true, path, label in data_loader:
     
     
     mu, c_lat=dis_evaluator.predict_latent(x_true)
-    if args.Traversal:
+    if args.Traversal_Save:
         if epoch_idx < 50:
             
             travN =  epoch_idx
