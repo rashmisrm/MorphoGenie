@@ -1,4 +1,4 @@
-# Train a VAE to learn disentangled representations 
+# Train a VAE to learn Disentangled Latent Representations 
 
 Thisn is a Pytorch implementation of FactorVAE proposed in Disentangling by Factorising, Kim et al.([http://arxiv.org/abs/1802.05983])
 <br>
