@@ -571,9 +571,9 @@ class Solver(object):
         LatentZAll=np.squeeze(LatentZAll)
         LatentZAll=np.squeeze(LatentZAll)
         LatentZ=pd.DataFrame(LatentZAll)
-        LatentZ.to_csv('C:/Users/Kevin Tsia/VIA/Mix_Latent.csv')
+        LatentZ.to_csv('./Latent.csv')
         LabelAll=pd.DataFrame(LabelAll)
-        LabelAll.to_csv('C:/Users/Kevin Tsia/VIA/Mix_Label.csv')
+        LabelAll.to_csv('./Label.csv')
 
 
             

@@ -26,7 +26,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Factor-VAE')
 
-    parser.add_argument('--image_size', default=256, type=int, help='image size. now only (64,64) is supported')
+    parser.add_argument('--image_size', default=256, type=int)
     parser.add_argument('--num_workers', default=2, type=int, help='dataloader num_workers')
 
     parser.add_argument('--viz_on', default=True, type=str2bool, help='enable visdom visualization')
@@ -48,9 +48,8 @@ if __name__ == "__main__":
     parser.add_argument('--beta2_D', default=0.9, type=float, help='beta2 parameter of the Adam optimizer for the discriminator')
 
     parser.add_argument('--train_model', default='FactorVAE', type=str, help='Train Model Type-VAE or Beta VAE or FactorVAE')
-    #parser.add_argument('--dset_dir', default='H:/ProcessedData/', type=str, help='dataset directory')
 
-    parser.add_argument('--dset_dir', default='C:/Users/Rashmi/WorkingLibs/MorphoGenie-Temp2/MorphoGenie/ProcessedData/', type=str, help='dataset directory')
+    parser.add_argument('--dset_dir', default='../ProcessedData/', type=str, help='dataset directory')
     parser.add_argument('--dataset', default='CCy/', type=str, help='dataset name') #CellCycle/Vero/LC
     parser.add_argument('--datatype', default='rgb', type=str, help='dataset name')
     parser.add_argument('--nc', default=3, type=int, help='Number of Image Channels')
@@ -62,14 +61,12 @@ if __name__ == "__main__":
 
     parser.add_argument('--print_iter', default=500, type=int, help='print losses iter')
 
-    parser.add_argument('--ckpt_dir', default='Z:/COVID-FTP/Rashmi/FactorVAECheckpoints/checkpoints', type=str, help='checkpoint directory')
-    #parser.add_argument('--ckpt_dir', default='C:/Users/Rashmi/WorkingLibs/idgan-master_Jan/Models/checkpoints', type=str, help='checkpoint directory')
+    parser.add_argument('--ckpt_dir', default='./FactorVAECheckpoints/checkpoints', type=str, help='checkpoint directory')
 
     parser.add_argument('--ckpt_load', default='20000', type=str, help='checkpoint name to load')
     parser.add_argument('--ckpt_save_iter', default=10000, type=int, help='checkpoint save iter')
-    parser.add_argument('--output_dir', default='Z:/COVID-FTP/Rashmi/FactorVAECheckpoints/outputs', type=str, help='output directory')
+    parser.add_argument('--output_dir', default='./FactorVAECheckpoints/outputs', type=str, help='output directory')
 
-    #parser.add_argument('--output_dir', default='C:/Users/Rashmi/WorkingLibs/idgan-master_Jan/Models/outputs', type=str, help='output directory')
     parser.add_argument('--output_save', default=True, type=str2bool, help='whether to save traverse results')
     parser.add_argument('--folder', default='LC', type=str, help='dataset name')
     args = parser.parse_args()
