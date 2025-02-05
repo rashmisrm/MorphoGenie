@@ -14,7 +14,7 @@ conda install pytorch==1.0.0 torchvision==0.2.1 cuda100 -c pytorch
 ```
 
 ```
-pip install visdom tqdm matplotlib
+pip install visdom tqdm matplotlib 
 ```
 <br>
 
@@ -22,19 +22,19 @@ Preprocess steps include Centring the cells followed by cropping and resizing.
 
 ### Usage
 
-initialize visdom
+Initialize visdom. 
 
 ```
 python -m visdom.server
 ```
-you can reproduce results below as follows
+Train the VAE from dVAE directory using 
 ```
 e.g.
 python main.py --name run_celeba --dataset ./ProcesssedData/LC --gamma 10 --lr_VAE 1e-4 --lr_D 5e-5 --z_dim 10 
 
 ```
 
-check training process on the visdom server
+Check training process on the visdom server
 
 ```
 localhost:8097
