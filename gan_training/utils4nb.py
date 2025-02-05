@@ -40,7 +40,7 @@ def update_average(model_tgt, model_src, beta):
         p_tgt.copy_(beta*p_tgt + (1. - beta)*p_src)
 
 
-"""dataset.py"""
+
 
 import os
 import random
