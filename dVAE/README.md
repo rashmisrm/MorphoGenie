@@ -30,7 +30,7 @@ python -m visdom.server
 Train the VAE from dVAE directory using 
 ```
 e.g.
-python main.py --name run_celeba --dataset ./ProcesssedData/LC --gamma 10 --lr_VAE 1e-4 --lr_D 5e-5 --z_dim 10 
+python main.py --name dVAE_Model1 --dataset ./ProcesssedData/LC --gamma 10 --lr_VAE 1e-4 --lr_D 5e-5 --z_dim 10 
 
 ```
 
