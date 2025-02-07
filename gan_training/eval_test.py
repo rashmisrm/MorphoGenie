@@ -224,19 +224,19 @@ class DisentEvaluator(object):
                 idgan_sample = F.adaptive_avg_pool2d(gp(self.generator(z_)), (64, 64)).data.cpu()
 
                 idgan_samples.append(idgan_sample)
-                dvae_sample = dp(self.dvae(c=c, decode_only=True)).data.cpu()
+                #dvae_sample = dp(self.dvae(c=c, decode_only=True)).data.cpu()
+                dvae_sample = F.adaptive_avg_pool2d(dp(self.dvae(c=c, decode_only=True)), (64, 64)).data.cpu()
                 dvae_samples.append(dvae_sample)
                 
 
                 c_zero[:, c_dim] = val
                 c_p = c_ + c_zero
                 z_p_ = torch.cat([z, c_p], 1)
-                idgan_sample_p_np = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (512, 512))
+                idgan_sample_p_np = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (64, 64))
                 idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (64, 64)).data.cpu()
-                
-                
                 idgan_samples_p_np.append(idgan_sample_p)
-                dvae_sample_p = dp(self.dvae(c=c_p, decode_only=True)).data.cpu()
+                
+                dvae_sample_p =F.adaptive_avg_pool2d(dp(self.dvae(c=c_p, decode_only=True)),(64, 64)).data.cpu()
                 dvae_samples_p.append(dvae_sample_p)
              
                 if save=='True':
@@ -273,9 +273,9 @@ class DisentEvaluator(object):
         
         idgan_samples = torch.cat(idgan_samples, dim=0)
         idgan_samples = make_grid(idgan_samples, nrow=ncol, padding=2, pad_value=1)
-        plt.figure(figsize=(20,24))
-        #plt.imshow(color.rgb2gray(idgan_samples.permute(1, 2, 0)), cmap=cmap)
-        #plt.imshow((idgan_samples.permute(1, 2, 0)))
+        #plt.figure(figsize=(10,1))
+        #plt.imshow(color.rgb2gray(idgan_samples.permute(1, 2, 0)), cmap='cmap')
+        plt.imshow((idgan_samples.permute(1, 2, 0)), cmap='viridis')
 
         plt.axis('off')
         
@@ -293,39 +293,18 @@ class DisentEvaluator(object):
         dvae_samples_p = make_grid(dvae_samples_p, nrow=ncol, padding=2, pad_value=1)
         #plt.imshow(color.rgb2gray(dvae_samples_p.permute(1, 2, 0)), cmap=cmap)
         #plt.axis('off')
-              #  idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (512, 512)).data.cpu()
-  
-
-        #idgan_samples = torch.cat(idgan_samples, dim=0)
-        #dvae_samples = torch.cat(dvae_samples, dim=0)
 
 
-        #2d_dvae=self.reduce_latent2d(mu_cdim_dvae)
-
-        #idgan_samples = torch.cat(idgan_samples, dim=0)
-        #mu_cdim_gan, c_lat_gan=self.predict_latent(idgan_samples)
-
-        #idgan_samples = make_grid(idgan_samples, nrow=ncol, padding=2, pad_value=1)
-        #dvae_samples = torch.cat(dvae_samples, dim=0)
-        #mu_cdim_dvae, c_lat_vae=self.predict_latent(dvae_samples)
-
-        #dvae_samples = make_grid(dvae_samples, nrow=ncol, padding=2, pad_value=1)
-        #idgan_samples_p_np=torch.cat(idgan_samples_p_np, dim=0)
-        #idgan_samples_p = torch.cat(idgan_samples_p, dim=0)
-        #idgan_samples_p = make_grid(idgan_samples_p, nrow=ncol, padding=2, pad_value=1)
-        #dvae_samples_p = torch.cat(dvae_samples_p, dim=0)
-        #dvae_samples_p = make_grid(dvae_samples_p, nrow=ncol, padding=2, pad_value=1)
-
-        #x = torch.stack([idgan_samples, dvae_samples, idgan_samples_p, dvae_samples_p])
-        #x = make_grid(x, nrow=4, padding=4, pad_value=0)
-        #x = torch.stack([idgan_samples_p, dvae_samples_p])
-        #x = make_grid(x, nrow=4, padding=4, pad_value=0)
+        x = torch.stack([idgan_samples, dvae_samples, idgan_samples_p, dvae_samples_p])
+        x = make_grid(x, nrow=4, padding=4, pad_value=0)
+        x = torch.stack([idgan_samples_p, dvae_samples_p])
+        x = make_grid(x, nrow=4, padding=4, pad_value=0)
 
     #x=1
         if TravImRet=='True':
              return idgan_samples_p_np
 
-        return ncol
+        return x
         #return  x, mu_cdim_dvae, mu_cdim_gan, ncol
  
     
@@ -336,13 +315,13 @@ class DisentEvaluator(object):
         #print('mu=',mu)
         #print('var=',var)
         return mu,c
-    def predict_image(self,c_lat):
+    def predict_image(self,c_lat, decoder='idgan'):
    #     idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_)), (64, 64)).data.cpu()
    #     idgan_samples_p.append(idgan_sample_p)
    #     dvae_sample_p = dp(self.dvae(c=c_p, decode_only=True)).data.cpu()
    #     dvae_samples_p.append(dvae_sample_p)
         samples=[]
-        decoder='idgan'
+        
         for i  in range(0, len(c_lat)):
             z = self.zdist.sample((1,))
             c = c_lat[i]
