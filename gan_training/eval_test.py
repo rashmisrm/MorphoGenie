@@ -28,7 +28,6 @@ import pandas as pd
 from skimage import color
 import os
 
-
 def truncated_z_sample(batch_size, z_dim, truncation=1., seed=None):
     values = truncnorm.rvs(-2, 2, size=(batch_size, z_dim))
     return torch.from_numpy(truncation * values)
@@ -220,8 +219,8 @@ class DisentEvaluator(object):
             for val in interpolation:
                 c[:, c_dim] = val
                 z_ = torch.cat([z, c], 1)
-                idgan_sample = F.adaptive_avg_pool2d(gp(self.generator(z_)), (64, 64))
-                idgan_sample = F.adaptive_avg_pool2d(gp(self.generator(z_)), (64, 64)).data.cpu()
+                idgan_sample = F.adaptive_avg_pool2d(gp(self.generator(z_)), (256, 256))
+                idgan_sample = F.adaptive_avg_pool2d(gp(self.generator(z_)), (256, 256)).data.cpu()
 
                 idgan_samples.append(idgan_sample)
                 dvae_sample = dp(self.dvae(c=c, decode_only=True)).data.cpu()
@@ -231,8 +230,8 @@ class DisentEvaluator(object):
                 c_zero[:, c_dim] = val
                 c_p = c_ + c_zero
                 z_p_ = torch.cat([z, c_p], 1)
-                idgan_sample_p_np = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (512, 512))
-                idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (64, 64)).data.cpu()
+                idgan_sample_p_np = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (256, 256))
+                idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (256, 256)).data.cpu()
                 
                 
                 idgan_samples_p_np.append(idgan_sample_p)
@@ -241,11 +240,12 @@ class DisentEvaluator(object):
              
                 if save=='True':
                     save_path='./outputs/TraversalLoop/'
+                    
                     if  os.path.exists(save_path)==False:
                         os.mkdir(save_path)
                     if  os.path.exists(save_path+str(travN)+'/')==False:
                         os.mkdir(save_path+str(travN)+'/')
-                        
+                    #save_path='Z:/COVID-FTP/Rashmi/IDGAN/outputs/'+str(travN)+'/'
                     if save_type=='idgan':
                         imagesave=idgan_sample_p_np    
                         imagesave=imagesave.detach().cpu().numpy()
@@ -266,31 +266,31 @@ class DisentEvaluator(object):
 
                     val=val.detach().cpu().numpy()
                     plt.imsave((save_path+str(travN)+'/'+ str(c_dim)+'_'+ str(val)+'.png'),imagesave,cmap='gray')
-                    
+                                        
                 idgan_samples_p.append(idgan_sample_p)
                 idgan_samples_p_np.append(idgan_sample_p_np)
                 
         
-        idgan_samples = torch.cat(idgan_samples, dim=0)
-        idgan_samples = make_grid(idgan_samples, nrow=ncol, padding=2, pad_value=1)
-        plt.figure(figsize=(20,24))
+        #idgan_samples = torch.cat(idgan_samples, dim=0)
+        #idgan_samples = make_grid(idgan_samples, nrow=ncol, padding=2, pad_value=1)
+        #plt.figure(figsize=(20,24))
         #plt.imshow(color.rgb2gray(idgan_samples.permute(1, 2, 0)), cmap=cmap)
         #plt.imshow((idgan_samples.permute(1, 2, 0)))
 
-        plt.axis('off')
+        #plt.axis('off')
         
-        dvae_samples = torch.cat(dvae_samples, dim=0)
-        dvae_samples = make_grid(dvae_samples, nrow=ncol, padding=2, pad_value=1)
+        #dvae_samples = torch.cat(dvae_samples, dim=0)
+        #dvae_samples = make_grid(dvae_samples, nrow=ncol, padding=2, pad_value=1)
         #plt.imshow((dvae_samples.permute(1, 2, 0)))
         #plt.axis('off')
         
-        idgan_samples_p = torch.cat(idgan_samples_p, dim=0)
-        idgan_samples_p = make_grid(idgan_samples_p, nrow=ncol, padding=2, pad_value=1)
+        #idgan_samples_p = torch.cat(idgan_samples_p, dim=0)
+        #idgan_samples_p = make_grid(idgan_samples_p, nrow=ncol, padding=2, pad_value=1)
         #plt.imshow(color.rgb2gray(idgan_samples_p.permute(1, 2, 0)), cmap=cmap)
         #plt.axis('off')
         
-        dvae_samples_p = torch.cat(dvae_samples_p, dim=0)
-        dvae_samples_p = make_grid(dvae_samples_p, nrow=ncol, padding=2, pad_value=1)
+        #dvae_samples_p = torch.cat(dvae_samples_p, dim=0)
+        #dvae_samples_p = make_grid(dvae_samples_p, nrow=ncol, padding=2, pad_value=1)
         #plt.imshow(color.rgb2gray(dvae_samples_p.permute(1, 2, 0)), cmap=cmap)
         #plt.axis('off')
               #  idgan_sample_p = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (512, 512)).data.cpu()
@@ -321,7 +321,6 @@ class DisentEvaluator(object):
         #x = torch.stack([idgan_samples_p, dvae_samples_p])
         #x = make_grid(x, nrow=4, padding=4, pad_value=0)
 
-    #x=1
         if TravImRet=='True':
              return idgan_samples_p_np
 
@@ -359,7 +358,7 @@ class DisentEvaluator(object):
                 c_zero[:, :] = val
                 c_p = c_lat + c_zero
                 z_p_ = torch.cat([z, c], 1)
-                sample = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (64, 64))
+                sample = F.adaptive_avg_pool2d(gp(self.generator(z_p_)), (256, 256))
 
 
                 
