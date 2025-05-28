@@ -85,7 +85,7 @@ The single-cell images in the dataset to be tested are required to be segmented,
 
 Testing dataset comprising 1500 cell images takes 1 minute.
 
-Load the [pre-trained model](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FProcessedDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
+Load the [pre-trained model](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FModels&ga=1) and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
 ```
 python MorphoGenie_Test.py --config cells_650.yaml -Traversal_Save=False --Train_Dataset=LC --Test_Dataset=LC
