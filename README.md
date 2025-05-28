@@ -9,6 +9,7 @@ MorphoGenie standsout in three key attributes:
 2. Interpretability: MorphoGenie adopts a VAE-based method to learn a compact, interpretable, and transferable disentangled representation for single-cell morphological analysis. In contrast to the prior work, we propose a novel technique for interpreting the learned representation by extracting handcrafted features from reconstructed images produced by latent traversals, facilitating the discovery of biologically meaningful inferences, especially the heterogeneities of cell types and lineages. 
 3. Generalizability: MorphoGenie is widely adaptable across various imaging modalities and experimental conditions, promoting cross-study comparisons and reusable morphological profiling results. The model generalizes to unseen single-cell datasets and different imaging modalities while providing explanations for its predictions. Overall, MorphoGenie could spearhead new strategies for conducting comprehensive morphological profiling and make biologically meaningful discoveries across a wide range of imaging modalities.
 
+Link to paper [here](https://www.biorxiv.org/content/10.1101/2024.09.24.614684v1.full.pdf).
 
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Intro.png)
