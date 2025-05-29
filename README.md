@@ -83,9 +83,8 @@ The single-cell images in the dataset to be tested are required to be segmented,
 
 ## Testing with pre-trained models
 
-Download and extract the Models.7z file here[pre-trained model](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FModels&ga=1). Place the 'Models' folder in the root directory.
+Download and extract the Models.7z file [pre-trained model](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FModels&ga=1). Place the 'Models' folder in the root directory.
 
-Testing dataset comprising 1500 cell images takes 1 minute.
 
 Load the and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
@@ -95,13 +94,14 @@ python MorphoGenie_Test.py --config cells_650.yaml -Traversal_Save=False --Train
 Train_Dataset here refers to the dataset used for taining the model. 
 Alternatively, MorphoGenie_Test.ipynb can be employed for testing the performance.
 
+Testing dataset comprising 1500 cell images takes 1 minute.
 
 ## Generalizability
 
 To assess MorphoGenie's generalizability, model pre-trained on a dataset from one imaging modality can be employed to test its performance on unseen datasets with different image contrasts. MorphoGenie could apply its trained latent representations to perform accurate downstream analyses and predictions on these new test datasets, without any retraining.
 
 ```
-python MorphoGenie_Test.py --config cells_650.yaml -Traversal_Save=False --Train_Dataset=CCy --Test_Dataset=LC
+python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=False --Train_Dataset=CCy --Test_Dataset=LC
 ```
 
 To test generalizability, the pre-trained model is loaded and latent features are predicted by simply inputting the location of a new pre-processed dataset.
