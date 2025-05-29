@@ -89,7 +89,7 @@ Download and extract the Models.7z file [pre-trained model](https://hkuhk-my.sha
 Load the and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
 ```
-python MorphoGenie_Test.py --config cells_650.yaml -Traversal_Save=False --Train_Dataset=LC --Test_Dataset=LC
+python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=False --Train_Dataset=LC --Test_Dataset=LC
 ```
 Train_Dataset here refers to the dataset used for taining the model. 
 Alternatively, MorphoGenie_Test.ipynb can be employed for testing the performance.
