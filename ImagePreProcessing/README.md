@@ -1,16 +1,8 @@
-# Image Pre-processing 
+### Image Pre-processing 
 
 
-1. _Download the raw data files_: Get the files from the specified source 
-2. _Extract the files_: If the files are compressed (e.g., zip, tar, or gzip), extract them to a folder.
-3. _Create a folder for pre-processing_: Make a new folder named 'ImagePreProcessing' (or use an existing one if already created).
-4. _Copy relevant files_: Move the extracted raw data files into the 'ImagePreProcessing' folder, ensuring the correct files are used with the pre-processing code.
 
-
-Download Raw Data Files[here]([https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/Emj-XoKWReNFo0hiK87UipwBMWGriXSO_900W6F3QFbggw?e=SSH6xA])
-<br>
-
-Image preprocessing pipeline involves several key steps to prepare images for analysis:
+#Image preprocessing pipeline involves several key steps to prepare images for analysis:
 
 1. *Segmentation*:
     - For single-cell images captured using a high-speed imaging flow cytometer, intensity threshold-based segmentation is used (Lung Cancer, Cell Cycle       datasets). 
@@ -24,4 +16,10 @@ Image preprocessing pipeline involves several key steps to prepare images for an
 
 5. *Cell alignment*: Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
-The code for these steps is organized by dataset in individual folders. This approach allows for dataset-specific customization while maintaining a structured pipeline. If you need help with code implementation or optimization, feel free to ask!
+
+
+1. _Download the raw data files_: Get the files from the specified source 
+2. _Extract the files_: If the files are compressed (e.g., zip, tar, or gzip), extract them to a folder.
+3. _Copy relevant files_: Move the extracted raw data files into the 'ImagePreProcessing' folder, ensuring the correct files are used with the pre-processing code.
+
+The code for these steps is organized by dataset in individual folders. This approach allows for dataset-specific customization while maintaining a structured pipeline.
