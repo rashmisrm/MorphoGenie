@@ -118,7 +118,7 @@ MorphoGenie's interpretability is enhanced through analysis of how its disentang
 
 ![](https://github.com/rashmisrm/MorphoGenie/blob/main/Figures/Disent.png)
 
-Traversal reconstructions are generated (setting flag Traverse_Save = True) to interpret MorphoGenie's disentangled latent space. Images are saved in the folder \<outputs\>.
+Traversal reconstructions are generated (setting flag Traversal_Save = True) to interpret MorphoGenie's disentangled latent space. Images are saved in the folder \<outputs\>.
 
 ```
 python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=True --Train_Dataset=LC --Test_Dataset=LC
