@@ -19,5 +19,5 @@ The code for these steps is organized by dataset in individual folders. This app
 
 a. _Download and extract the raw data files_: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51). 
 
-b. _Copy relevant files_: Move the extracted raw data files into the [Link]() folder named after the dataset, ensuring the correct files are used with the pre-processing code.
-
+b. _Copy relevant files_: Place the extracted raw data files in the respective dataset folder, aligning with the pre-processing code requirements."
+Here's a rephrased version:
