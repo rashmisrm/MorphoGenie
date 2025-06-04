@@ -1,7 +1,5 @@
 # Image Pre-processing 
 
-
-
 ### Image preprocessing pipeline involves several key steps to prepare images for analysis:
 
 1. *Segmentation*:
@@ -15,9 +13,8 @@
 4. *Cell alignment*: Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
 
-### The code for these steps is organized by dataset in individual folders. This approach allows for dataset-specific customization while maintaining a structured pipeline.
+### The code for these steps is organized by dataset in individual folders. 
 
 a. _Download and extract the raw data files_: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51). 
 
-b. _Copy relevant files_: Place the extracted raw data files in the respective dataset folder, aligning with the pre-processing code requirements."
-Here's a rephrased version:
+b. _Copy relevant files_: Place the extracted raw data files in the respective dataset folder.
