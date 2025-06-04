@@ -2,7 +2,7 @@
 
 
 
-###Image preprocessing pipeline involves several key steps to prepare images for analysis:
+## Image preprocessing pipeline involves several key steps to prepare images for analysis:
 
 1. *Segmentation*:
     - For single-cell images captured using a high-speed imaging flow cytometer, intensity threshold-based segmentation is used (Lung Cancer, Cell Cycle       datasets). 
