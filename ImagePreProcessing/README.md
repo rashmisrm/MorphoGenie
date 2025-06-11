@@ -1,6 +1,6 @@
-# Image Pre-processing 
+## Image Pre-processing 
 
-## Image preprocessing pipeline involves several key steps to prepare images for analysis:
+### Image preprocessing pipeline involves several key steps to prepare images for analysis:
 
 1. #### Segmentation:
 
@@ -19,7 +19,7 @@
 4. #### Cell alignment: 
 	Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
-## Code Structure
+### Code Structure
 
 The code is organized in individual folders based on segmentation requirements. Each folder contains the necessary scripts and instructions for pre-processing specific datasets.
 
