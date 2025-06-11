@@ -2,9 +2,11 @@
 
 ### Image preprocessing pipeline involves several key steps to prepare images for analysis:
 
-1. ####Segmentation*:
-     ##### Single-cell images captured (imaging flow cytometer): intensity threshold-based segmentation is used (Lung Cancer, Cell Cycle       datasets). 
-     ##### Multiple cells in the field of view (cell culture plates): Cellpose (Cellpose v2.1.1) is utilized for batch processing of image segmentation, specifically leveraging the 'cyto2' model for segmenting images  (Cell Painting dataset and EMT). 
+1. #### Segmentation:
+     ##### a. Single-cell images captured (imaging flow cytometer): 
+		Intensity threshold-based segmentation is used (Lung Cancer, Cell Cycle       datasets). 
+     ##### b. Multiple cells in the field of view (cell culture plates): 
+		Cellpose (Cellpose v2.1.1) is utilized for batch processing of image segmentation, specifically leveraging the 'cyto2' model for segmenting images  (Cell Painting dataset and EMT). 
 
 2. *Background noise removal*: Noise is removed while preserving cell body information.
 
