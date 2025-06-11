@@ -8,31 +8,11 @@
  CH4='BBBC022_v1_images_20586w4\';
  CH5='BBBC022_v1_images_20586w5\';
 
- 
-%  folderMain='Z:\COVID-FTP\CellPaintingAssay\Compound\'
-%  CH1='BBBC022_v1_images_20608w1\';
-%  CH2='BBBC022_v1_images_20608w2\';
-%  CH3='BBBC022_v1_images_20585w3\';
-%  CH4='BBBC022_v1_images_20608w4\';
-%  CH5='BBBC022_v1_images_20608w5\';
 
 RefFolder=strcat(folderMain,'\', CH1) %Reference folder is the nucleii image
  
 folderSave1=strcat(folderSave)
 
-%folderSave2='\\AlphaHKU_NAS\alphahku2\COVID-FTP\Rashmi\OpenCell\AWS-S3\Segmented_ForOverlay\'
-
-%folderMask='Z:\COVID-FTP\CP-VAE\3\Masks\'
-% 
-% folderMain='Z:\COVID-FTP\CP-VAE\3\'
-% folderMask='Z:\COVID-FTP\CP-VAE\3\Masks\'
-
-% folderMain='Z:\COVID-FTP\CP-VAE\2\'
-% folderMask='Z:\COVID-FTP\CP-VAE\2\Masks\'
-% 
-% folderMain='Z:\COVID-FTP\CP-VAE\2\'
-% folderMask='Z:\COVID-FTP\CP-VAE\2\Masks\'
-%folderMask='Z:\COVID-FTP\CP-VAE\1\Masks\'
 
 %chdir(RefFolder);
 FileList1 = dir(RefFolder);
@@ -86,7 +66,6 @@ for Im = 1:size(FileList1, 1)
             for ch2=1:size(Centroids2)
                 rowCh2=Centroids2.Centroid(ch2,:)
                 if abs(rowCh1(1)- rowCh2(1)) <15 && abs(rowCh1(2)- rowCh2(2)) < 15
-                %if Centroids1.Centroid(ch1,:)
                     for ch3=1:size(Centroids3)
                         rowCh3=Centroids3.Centroid(ch3,:)
                         if abs(rowCh1(1)- rowCh3(1)) <15 && abs(rowCh1(2)- rowCh3(2)) < 15
@@ -105,49 +84,29 @@ for Im = 1:size(FileList1, 1)
                                         Ch4Im=uint8(CentIm4(:,:,ch4));
                                         Ch5Im=uint8(CentIm5(:,:,ch5));
 
-%                                        if ~exist(strcat(folderSave2,treatref,'/Ch1/'))
-%                                            mkdir(strcat(folderSave2,treatref,'/Ch1/'));
-%                                        end
                                        
                                        if ~exist(strcat(folderSave1,'/Ch1/',treatref,'/Ch/'))
                                            mkdir(strcat(folderSave1,'/Ch1/',treatref,'/Ch/'));
                                        end
-%                                         if ~exist(strcat(folderSave2,treatref,'/Ch2/')) 
-%                                            mkdir(strcat(folderSave2,treatref,'/Ch2/'));
-%                                         end
+
                                         
                                        if ~exist(strcat(folderSave1,'/Ch2/',treatref,'/Ch/'))
                                            mkdir(strcat(folderSave1,'/Ch2/',treatref,'/Ch/'));
                                        end
-%                                        if ~exist(strcat(folderSave2,treatref,'/Ch3/'))
-%                                            mkdir(strcat(folderSave2,treatref,'/Ch3/'));
-%                                        end
-                                       
+
                                        if ~exist(strcat(folderSave1,'/Ch3/',treatref,'/Ch/'))
                                            mkdir(strcat(folderSave1,'/Ch3/',treatref,'/Ch/'));
                                        end
-%                                        if ~exist(strcat(folderSave2,treatref,'/Ch4/'))
-%                                            mkdir(strcat(folderSave2,treatref,'/Ch4/'));
-%                                        end
+
                                        
                                        if ~exist(strcat(folderSave1,'/Ch4/',treatref,'/Ch/'))
                                            mkdir(strcat(folderSave1,'/Ch4/',treatref,'/Ch/'));
                                        end
-%                                        if ~exist(strcat(folderSave2,treatref,'/Ch5/'))
-%                                            mkdir(strcat(folderSave2,treatref,'/Ch5/'));
-%                                        end               
-                                       
+
                                        if ~exist(strcat(folderSave1,'/Ch5/',treatref,'/Ch/'))
                                            mkdir(strcat(folderSave1,'/Ch5/',treatref,'/Ch/'));
                                         end
-%                                         imwrite(Ch1Im, strcat(folderSave2, treatref, '/Ch1/',num2str(imcount),'.png'))
-%                                         imwrite(Ch2Im, strcat(folderSave2, treatref, '/Ch2/',num2str(imcount),'.png'))
-%                                         imwrite(Ch3Im, strcat(folderSave2, treatref, '/Ch3/',num2str(imcount),'.png'))
-%                                         imwrite(Ch4Im, strcat(folderSave2, treatref, '/Ch4/',num2str(imcount),'.png'))
-%                                         imwrite(Ch5Im, strcat(folderSave2, treatref, '/Ch5/',num2str(imcount),'.png'))
-                                        
-                                        
-                                        
+
                                         imwrite(Ch1Im, strcat(folderSave1,'/Ch1/', treatref,'/Ch/', num2str(imcount),'.png'))
                                         imwrite(Ch2Im, strcat(folderSave1,'/Ch2/', treatref,'/Ch/', num2str(imcount),'.png'))
                                         imwrite(Ch3Im, strcat(folderSave1,'/Ch3/', treatref,'/Ch/', num2str(imcount),'.png'))
