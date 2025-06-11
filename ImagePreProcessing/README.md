@@ -23,9 +23,15 @@ a. _Download and extract the raw data files_: [Link](https://hkuhk-my.sharepoint
 
 b. _Copy relevant files_: Place the extracted raw data files in the respective dataset folder.
 
-c. Use batch processing code to extract masks using CellPose
+For single cell images, segmentation followed by other preprocessing steps are included in the *CropSeg.m*. Run the CropSeg.m from the directory spcific to the dataset you are performing preprocessing
 
-d. Save Images and Masks in two separate folders
+This step save Masks as a separate in two separate folders
+
+For multiple cell images, Use batch processing code to generate masks using CellPose batch processing code *CellPose_Batch.ipynb*
+	Details pertaining to using CellPose can be found here [Link](https://cellpose.readthedocs.io/en/latest/index.html)
+
+Use the Matlab code *CropSeg.m* to save the cropped images in the *Cropped* folder in the working directory
+
 
 e. Use matlab code to create individual cell images, centered and noise free provided separately for datasets.
 
