@@ -19,23 +19,32 @@
 4. #### Cell alignment: 
 	Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
+# Code Structure
 
-### The code for these steps is organized in individual folders based on segmentation requirements.
+The code is organized in individual folders based on segmentation requirements. Each folder contains the necessary scripts and instructions for pre-processing specific datasets.
 
-1. Download and extract the raw data files: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51). 
+*Prerequisites*
+- [MATLAB, CellPose]
 
-2. Copy relevant files: Place the extracted raw data files in the respective dataset folder.
+*Set-up*
 
-3. Run Pre-precossing steps 
+1. Download and extract the raw data files: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism_hku_hk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad-949c-4516-85d6-3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51)
+2. Place the extracted raw data files in the respective dataset folder.
 
-	a. For single cell images (Lung Cancer, CellCycle): Segmentation followed by other preprocessing steps are included in the CropSeg.m.
-	 Run the CropSeg.m from the directory specific to the dataset you are performing preprocessing. This step saves singlecell images in a folder named 	Cropped in the current directory.
 
- 	b. For multiple cell images:
-		i. Use batch processing code to generate masks using CellPose batch processing code CellPose_Batch.ipynb
-		Details pertaining to using CellPose can be found here [Link](https://cellpose.readthedocs.io/en/latest/index.html)
+# Usage
 
-		ii. Use the Matlab code CropSeg.m to save the cropped images in the *Cropped* folder in the working directory
+*Single-Cell Images*
+1. Run `CropSeg.m` from the directory specific to the dataset.
+2. The pre-processed images will be saved in a folder named `Cropped` in the current directory.
+
+*Multiple Cell Images*
+1. Use `CellPose_Batch.ipynb` for batch processing and generating masks. [Link](https://cellpose.readthedocs.io/en/latest/index.html)
+2. Run `CropSeg.m` to save cropped images in the `Cropped` folder.
+
+
+
+
 		 - Single Channel such as EMT saves the 
 		 - Multiple channels datasets (Cell Painting): Processed Images are saved in 5 different folders corresponding to 5 channels.
 		 - Each folder contains images of chnell names after a unique cell id. For example. Cell #1 whose organells are arranged in 5 channel is named as 1.png in all 5 channel folders.  
