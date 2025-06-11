@@ -1,0 +1,40 @@
+
+%folder='H:\Rashmi\RawData\ImagePre-Processing\LC\'
+folder = pwd
+
+celltype='H2170_QPI' %Dataset filename 
+cell_file_name=strcat(folder,'\',celltype,'.mat')
+load(cell_file_name); % Load dataset
+
+SaveFolder=strcat(folder,'Cropped','/');
+if ~exist(SaveFolder)
+    mkdir(SaveFolder)
+end
+thresh_level=0.3; %Intensity threshold
+imcount=0;
+for i=1:size(QPI,3)
+   
+    QPIi= QPI(:,:,i);
+    Image=imagesc(QPIi); colormap gray;  daspect([1 1 1]); axis off;
+    cell_mask=im2bw(QPIi,thresh_level);
+    se = strel('disk',4,4);
+    cell_mask = imerode(cell_mask,se);
+    cell_mask = imerode(cell_mask,se);
+    cell_mask = imdilate(cell_mask,se);
+    cell_mask = imdilate(cell_mask,se);
+    cell_mask=imfill(cell_mask,'holes');
+     
+    QPIi=QPIi.*cell_mask;
+
+    [CentIm1, Centroids1]=GetCentImages(QPIi, cell_mask);
+
+    for im=1:size(CentIm1,3)
+        if ~isempty(CentIm1)
+            imwrite(uint8(CentIm1(:,:,im)), strcat(SaveFolder, num2str(imcount),'.png'));
+            imcount=imcount+1
+        end
+    end
+
+    %saveas(Image,strcat(savefolder,num2str(i),'.png'));
+end
+
