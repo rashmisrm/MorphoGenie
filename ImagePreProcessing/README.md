@@ -19,18 +19,21 @@
 
 ### The code for these steps is organized in individual folders based on segmentation requirements.
 
-a. _Download and extract the raw data files_: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51). 
+1. Download and extract the raw data files: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad%2D949c%2D4516%2D85d6%2D3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51). 
 
-b. _Copy relevant files_: Place the extracted raw data files in the respective dataset folder.
+2. Copy relevant files: Place the extracted raw data files in the respective dataset folder.
 
-For single cell images, segmentation followed by other preprocessing steps are included in the *CropSeg.m*. Run the CropSeg.m from the directory spcific to the dataset you are performing preprocessing
+3. Run Pre-precossing steps 
+	For single cell images, segmentation followed by other preprocessing steps are included in the *CropSeg.m*. Run the CropSeg.m from the directory spcific to the dataset you are performing preprocessing. This step saves singlecell images in a folder named *Cropped* in the current directory.
 
-This step save Masks as a separate in two separate folders
-
-For multiple cell images, Use batch processing code to generate masks using CellPose batch processing code *CellPose_Batch.ipynb*
+4. For multiple cell images, 
+	i. Use batch processing code to generate masks using CellPose batch processing code *CellPose_Batch.ipynb*
 	Details pertaining to using CellPose can be found here [Link](https://cellpose.readthedocs.io/en/latest/index.html)
 
-Use the Matlab code *CropSeg.m* to save the cropped images in the *Cropped* folder in the working directory
+	ii. Use the Matlab code *CropSeg.m* to save the cropped images in the *Cropped* folder in the working directory
+		"\t" a. Single Channel such as EMT saves the 
+		"\t" b. Multiple channels datasets (Cell Painting): Processed Images are saved in 5 different folders corresponding to 5 channels.
+		"\t" Each folder contains images of chnell names after a unique cell id. For example. Cell #1 whose organells are arranged in 5 channels is names as 1.png in all 5 channels.  
 
 
 e. Use matlab code to create individual cell images, centered and noise free provided separately for datasets.
