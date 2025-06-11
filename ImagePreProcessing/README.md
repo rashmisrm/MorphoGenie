@@ -40,7 +40,7 @@ The code is organized in individual folders based on segmentation requirements. 
 
 *Multiple Cell Images*
 1. Use `CellPose_Batch.ipynb` for batch processing and generating masks. [Link](https://cellpose.readthedocs.io/en/latest/index.html)
-2. Run `CropSeg.m` to save cropped images in the `Cropped` folder.
+2. Run `CropSeg.m` to save cropped single-cell images in the `Cropped` folder.
 
 - Single-Channel Datasets (e.g., EMT): Processed images are saved in a single folder.
 - Multi-Channel Datasets (e.g., Cell Painting): Processed images are saved in separate folders for each channel (5 folders in total). 
