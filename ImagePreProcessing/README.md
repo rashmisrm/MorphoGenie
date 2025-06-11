@@ -10,11 +10,14 @@
      #### b. Multiple cells in the field of view (cell culture plates): 
 	Cellpose (Cellpose v2.1.1) is utilized for batch processing of image segmentation, specifically leveraging the 'cyto2' model for segmenting images  (Cell Painting dataset and EMT). 
 
-2. #### Background noise removal: Noise is removed while preserving cell body information.
+2. #### Background noise removal: 
+	Noise is removed while preserving cell body information.
 
-3. #### Center cropping and resizing: Images are center-cropped and resized to 256 x 256 pixels.
+3. #### Center cropping and resizing: 
+	Images are center-cropped and resized to 256 x 256 pixels.
 
-4. #### Cell alignment: Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
+4. #### Cell alignment: 
+	Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
 
 ### The code for these steps is organized in individual folders based on segmentation requirements.
@@ -31,9 +34,9 @@
 	Details pertaining to using CellPose can be found here [Link](https://cellpose.readthedocs.io/en/latest/index.html)
 
 	ii. Use the Matlab code *CropSeg.m* to save the cropped images in the *Cropped* folder in the working directory
-		"\t" a. Single Channel such as EMT saves the 
-		"\t" b. Multiple channels datasets (Cell Painting): Processed Images are saved in 5 different folders corresponding to 5 channels.
-		"\t" Each folder contains images of chnell names after a unique cell id. For example. Cell #1 whose organells are arranged in 5 channels is names as 1.png in all 5 channels.  
+		 a. Single Channel such as EMT saves the 
+		 b. Multiple channels datasets (Cell Painting): Processed Images are saved in 5 different folders corresponding to 5 channels.
+		 c. Each folder contains images of chnell names after a unique cell id. For example. Cell #1 whose organells are arranged in 5 channels is names as 1.png in all 5 channels.  
 
 
 e. Use matlab code to create individual cell images, centered and noise free provided separately for datasets.
