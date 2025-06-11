@@ -19,20 +19,20 @@
 4. #### Cell alignment: 
 	Cells are aligned to the center of the image frame to prevent positional features from influencing analysis.
 
-# Code Structure
+## Code Structure
 
 The code is organized in individual folders based on segmentation requirements. Each folder contains the necessary scripts and instructions for pre-processing specific datasets.
 
 *Prerequisites*
 - 'MATLAB, CellPose'
 
-*Set-up*
+## Set-up
 
 1. Download and extract the raw data files: [Link](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism_hku_hk%2FDocuments%2FMorphoGenieLink%2FRawDatasets&csf=1&web=1&CID=ee3d57ad-949c-4516-85d6-3257a6467d3b&FolderCTID=0x0120007AB2941E62AA1B49B2FF62BCAA405A51)
 2. Place the extracted raw data files in the respective dataset folder.
 
 
-# Usage
+## Usage
 
 *Single-Cell Images*
 1. Run `CropSeg.m` from the directory specific to the dataset.
