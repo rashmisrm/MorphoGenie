@@ -24,7 +24,7 @@
 The code is organized in individual folders based on segmentation requirements. Each folder contains the necessary scripts and instructions for pre-processing specific datasets.
 
 *Prerequisites*
-- 'MATLAB, CellPose'
+'''MATLAB, CellPose'''
 
 ## Set-up
 
@@ -41,10 +41,6 @@ The code is organized in individual folders based on segmentation requirements. 
 *Multiple Cell Images*
 1. Use `CellPose_Batch.ipynb` for batch processing and generating masks. [Link](https://cellpose.readthedocs.io/en/latest/index.html)
 2. Run `CropSeg.m` to save cropped images in the `Cropped` folder.
-
-
-
-
 		 - Single Channel such as EMT saves the 
 		 - Multiple channels datasets (Cell Painting): Processed Images are saved in 5 different folders corresponding to 5 channels.
 		 - Each folder contains images of chnell names after a unique cell id. For example. Cell #1 whose organells are arranged in 5 channel is named as 1.png in all 5 channel folders.  
