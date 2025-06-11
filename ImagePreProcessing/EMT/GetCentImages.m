@@ -1,4 +1,4 @@
-function[CentImages, Centroids]=GetCentImages(Image, MaskM, name)
+function[CentImages, Centroids]=GetCentImages(Image, MaskM)
         Objects = unique(MaskM(:));
         
 
@@ -22,8 +22,8 @@ function[CentImages, Centroids]=GetCentImages(Image, MaskM, name)
                     SegIm=SegMask.*(im2double(Image));
                     row=size(MaskM,2);
                     col=size(MaskM,1);
-                    Centerx=abs(row/2);
-                    Centery=abs(col/2);
+                    Centerx=round(abs(row/2));
+                    Centery=round(abs(col/2));
                     Crop=[Centerx-100,Centery-100, 200, 200];
 
                     filename=sprintf('SegIm%04d',i);
@@ -46,5 +46,5 @@ function[CentImages, Centroids]=GetCentImages(Image, MaskM, name)
             %end
         end
         CentImages=ImageAll;
-        Centroids=struct2table(CentroidAll);
+        Centroids=CentroidAll;
 end
