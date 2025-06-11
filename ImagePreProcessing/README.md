@@ -32,7 +32,6 @@
 	 Run the CropSeg.m from the directory specific to the dataset you are performing preprocessing. This step saves singlecell images in a folder named 	Cropped in the current directory.
 
  	b. For multiple cell images:
-		
 		i. Use batch processing code to generate masks using CellPose batch processing code CellPose_Batch.ipynb
 		Details pertaining to using CellPose can be found here [Link](https://cellpose.readthedocs.io/en/latest/index.html)
 
