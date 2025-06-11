@@ -24,7 +24,7 @@
 The code is organized in individual folders based on segmentation requirements. Each folder contains the necessary scripts and instructions for pre-processing specific datasets.
 
 ### Prerequisites
-'MATLAB, CellPose'
+	'MATLAB, CellPose'
 
 ### Set-up
 
