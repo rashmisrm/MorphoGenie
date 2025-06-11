@@ -192,7 +192,7 @@ class Solver(object):
 
                 self.optim_VAE.zero_grad()
                 vae_loss.backward(retain_graph=True)
-                self.optim_VAE.step()
+                # self.optim_VAE.step()
 
                 z_pperm = permute_dims(z_prime).detach()
                 D_z_pperm = self.D(z_pperm)
@@ -202,6 +202,7 @@ class Solver(object):
 
                 self.optim_D.zero_grad()
                 D_tc_loss.backward()
+                self.optim_VAE.step()
                 self.optim_D.step()
 
 
@@ -215,6 +216,7 @@ class Solver(object):
                                              recon=torch.sigmoid(x_recon).data.cpu())
                     self.visualize_recon()
                     #self.viz_latent()
+                    self.image_gather.flush()
                     self.traversal_save()
 
                 if self.viz_on and (self.global_iter%self.viz_ll_iter == 0):
@@ -245,11 +247,13 @@ class Solver(object):
                                              recon=torch.sigmoid(x_recon).data.cpu())
                     self.visualize_recon()
                     self.viz_latent()
-                    #self.image_gather.flush()
+                    self.image_gather.flush()
 
                 if self.viz_on and (self.global_iter%self.viz_ta_iter == 0):
-
-                    self.traversal_save(limit=4, inter=2/3)
+                    if self.dataset.lower() == '3dchairs':
+                        self.traversal_save(limit=2, inter=0.5)
+                    else:
+                        self.traversal_save(limit=4, inter=2/3)
 
                 if self.global_iter >= self.max_iter:
                     out = True
@@ -259,7 +263,7 @@ class Solver(object):
         self.pbar.close()
 
     def visualize_recon(self):
-        outdir = os.path.join('Z:/COVID-FTP/Rashmi/FactorVAECheckpoints/outputs/',self.name,str(self.global_iter),'Recon')
+        outdir = os.path.join('D:/Letitia/FactorVAE-master/outputs/',self.name,str(self.global_iter),'Recon')
         recon = os.path.join(outdir,'Recon')
         
         if not os.path.exists(outdir):
@@ -293,6 +297,10 @@ class Solver(object):
             
             recon_image_x = recon_image[:,0,:,:]
             recon_image_y = recon_image[:,1,:,:]
+            print('max:',torch.max(recon_image_x))
+            print('min:',torch.min(recon_image_x))
+            print('max_real:',torch.max(true_image_x))
+            print('min_real:',torch.min(true_image_x))
 
 
             
@@ -323,6 +331,12 @@ class Solver(object):
             true_image = make_grid(true_image)
             recon_image = make_grid(recon_image)
             sample = torch.stack([true_image, recon_image], dim=0)
+
+            print('max:',torch.max(recon_image))
+            print('min:',torch.min(recon_image))
+            print('max_real:',torch.max(true_image))
+            print('min_real:',torch.min(true_image))
+
             
             outfile = os.path.join(recon,'real-%08d.png'%int(self.global_iter))
             true_image_x=torch.unsqueeze(true_image,1)
@@ -335,7 +349,7 @@ class Solver(object):
                         #opts=dict(title=str(self.global_iter)))
         
     def traversal_save(self, limit=3, inter=2/3, loc=-1):
-        traversal =  os.path.join('Z:/COVID-FTP/Rashmi/FactorVAECheckpoints/outputs/',self.name,str(self.global_iter),'Traversal')
+        traversal =  os.path.join('D:/Letitia/FactorVAE-master/outputs/',self.name,str(self.global_iter),'Traversal')
 
             
         if not os.path.exists(traversal):
