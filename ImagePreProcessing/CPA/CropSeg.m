@@ -1,10 +1,28 @@
-%CellType='A172'
-%folderMain='Z:\COVID-FTP\LiveCell_Seg\A172\'
-%folderMask='Z:\COVID-FTP\LiveCell_Seg\A172\Masks\'
-% 
- folderMain='C:/Users/Rashmi/ProcessedData/PA/'
- RefFolder='C:/Users/Rashmi/ProcessedData/PA/DKC1/'
- %folderMask='Z:\COVID-FTP\CP-VAE\3\Masks\'
+
+ folderMain=pwd
+ folderSave=folderMain
+
+ CH1='BBBC022_v1_images_20586w1\';
+ CH2='BBBC022_v1_images_20586w2\';
+ CH3='BBBC022_v1_images_20586w3\';
+ CH4='BBBC022_v1_images_20586w4\';
+ CH5='BBBC022_v1_images_20586w5\';
+
+ 
+%  folderMain='Z:\COVID-FTP\CellPaintingAssay\Compound\'
+%  CH1='BBBC022_v1_images_20608w1\';
+%  CH2='BBBC022_v1_images_20608w2\';
+%  CH3='BBBC022_v1_images_20585w3\';
+%  CH4='BBBC022_v1_images_20608w4\';
+%  CH5='BBBC022_v1_images_20608w5\';
+
+RefFolder=strcat(folderMain,'\', CH1) %Reference folder is the nucleii image
+ 
+folderSave1=strcat(folderSave)
+
+%folderSave2='\\AlphaHKU_NAS\alphahku2\COVID-FTP\Rashmi\OpenCell\AWS-S3\Segmented_ForOverlay\'
+
+%folderMask='Z:\COVID-FTP\CP-VAE\3\Masks\'
 % 
 % folderMain='Z:\COVID-FTP\CP-VAE\3\'
 % folderMask='Z:\COVID-FTP\CP-VAE\3\Masks\'
@@ -16,33 +34,51 @@
 % folderMask='Z:\COVID-FTP\CP-VAE\2\Masks\'
 %folderMask='Z:\COVID-FTP\CP-VAE\1\Masks\'
 
-chdir(RefFolder);
-FileList = dir(RefFolder);
+%chdir(RefFolder);
+FileList1 = dir(RefFolder);
+FileList2 = dir(strcat(folderMain,'\',CH2));
+FileList3 = dir(strcat(folderMain,'\',CH3));
+FileList4 = dir(strcat(folderMain,'\',CH4));
+FileList5 = dir(strcat(folderMain,'\',CH5));
+
+
 Subset = 0;
 imcount=1;
-for Im = 1:size(FileList, 1)
-    if contains(FileList(Im).name, '.tif')
-        [filepath,name,ext] = fileparts(FileList(Im).name)
+for Im = 1:size(FileList1, 1)
+    if contains(FileList1(Im).name, '.tif')
+        [filepath1,name1,ext] = fileparts(FileList1(Im).name)
+        [filepath2,name2,ext] = fileparts(FileList2(Im).name)
+        [filepath3,name3,ext] = fileparts(FileList3(Im).name)
+        [filepath4,name4,ext] = fileparts(FileList4(Im).name)
+        [filepath5,name5,ext] = fileparts(FileList5(Im).name)
         
-        Image1=imread(strcat(folderMain,'1/',FileList(Im).name));
-        Mask1=imread(strcat(folderMain,'1/Masks/', name,'.tif'));
-        [CentIm1, Centroids1]=GetCentImages(Image1, Mask1, name);
+        treatref=name1(1:11)
+        
+        Image1=imread(strcat(folderMain,'\', CH1,FileList1(Im).name));
+        
+        Mask1=imread(strcat(folderMain,'\',CH1, '/Masks/',name1,'_label.tif'));
+        Objects = unique(Mask1(:));
+        NumCells=size(Objects)
+        
+        if NumCells(1) > 30
 
-        Image2=imread(strcat(folderMain,'2/',FileList(Im).name));
-        Mask2=imread(strcat(folderMain,'2/Masks/', name,'.tif'));
-        [CentIm2, Centroids2]=GetCentImages(Image2, Mask2, name);
+            [CentIm1, Centroids1]=GetCentImages(Image1, Mask1, name1);
+
+            Image2=imread(strcat(folderMain,'\',CH2,FileList2(Im).name));
+            Mask2=imread(strcat(folderMain,'\',CH2, '/Masks/',name2,'_label.tif'));
+            [CentIm2, Centroids2]=GetCentImages(Image2, Mask2, name1);
         
-        Image3=imread(strcat(folderMain,'3/',FileList(Im).name));
-        Mask3=imread(strcat(folderMain,'3/Masks/', name,'.tif'));
-        [CentIm3, Centroids3]=GetCentImages(Image3, Mask3, name);
+            Image3=imread(strcat(folderMain,'\',CH3,FileList3(Im).name));
+            Mask3=imread(strcat(folderMain,'\',CH3, '/Masks/',name3,'_label.tif'));
+            [CentIm3, Centroids3]=GetCentImages(Image3, Mask3, name1);
         
-        Image4=imread(strcat(folderMain,'4/',FileList(Im).name));
-        Mask4=imread(strcat(folderMain,'4/Masks/', name,'.tif'));
-        [CentIm4, Centroids4]=GetCentImages(Image4, Mask4, name);
+            Image4=imread(strcat(folderMain,'\',CH4,FileList4(Im).name));
+            Mask4=imread(strcat(folderMain,'\',CH4, '/Masks/',name4,'_label.tif'));
+            [CentIm4, Centroids4]=GetCentImages(Image4, Mask4, name1);
         
-        Image5=imread(strcat(folderMain,'5/',FileList(Im).name));
-        Mask5=imread(strcat(folderMain,'5/Masks/', name,'.tif'));
-        [CentIm5, Centroids5]=GetCentImages(Image5, Mask5, name);
+            Image5=imread(strcat(folderMain,'\',CH5,FileList5(Im).name));
+            Mask5=imread(strcat(folderMain,'\',CH5,'/Masks/', name5,'_label.tif'));
+            [CentIm5, Centroids5]=GetCentImages(Image5, Mask5, name1);
         
         %%COMPARE CENTROIDS FOR 3 CHANNELS
         for ch1=1:size(Centroids1)
@@ -69,28 +105,56 @@ for Im = 1:size(FileList, 1)
                                         Ch4Im=uint8(CentIm4(:,:,ch4));
                                         Ch5Im=uint8(CentIm5(:,:,ch5));
 
-                                       if ~exist(strcat(folderMain,'/Ch1/'))
-                                           mkdir(strcat(folderMain,'/Ch1/'));
+%                                        if ~exist(strcat(folderSave2,treatref,'/Ch1/'))
+%                                            mkdir(strcat(folderSave2,treatref,'/Ch1/'));
+%                                        end
+                                       
+                                       if ~exist(strcat(folderSave1,'/Ch1/',treatref,'/Ch/'))
+                                           mkdir(strcat(folderSave1,'/Ch1/',treatref,'/Ch/'));
                                        end
-                                        if ~exist(strcat(folderMain,'/Ch2/'))
-                                           mkdir(strcat(folderMain,'/Ch2/'));
+%                                         if ~exist(strcat(folderSave2,treatref,'/Ch2/')) 
+%                                            mkdir(strcat(folderSave2,treatref,'/Ch2/'));
+%                                         end
+                                        
+                                       if ~exist(strcat(folderSave1,'/Ch2/',treatref,'/Ch/'))
+                                           mkdir(strcat(folderSave1,'/Ch2/',treatref,'/Ch/'));
+                                       end
+%                                        if ~exist(strcat(folderSave2,treatref,'/Ch3/'))
+%                                            mkdir(strcat(folderSave2,treatref,'/Ch3/'));
+%                                        end
+                                       
+                                       if ~exist(strcat(folderSave1,'/Ch3/',treatref,'/Ch/'))
+                                           mkdir(strcat(folderSave1,'/Ch3/',treatref,'/Ch/'));
+                                       end
+%                                        if ~exist(strcat(folderSave2,treatref,'/Ch4/'))
+%                                            mkdir(strcat(folderSave2,treatref,'/Ch4/'));
+%                                        end
+                                       
+                                       if ~exist(strcat(folderSave1,'/Ch4/',treatref,'/Ch/'))
+                                           mkdir(strcat(folderSave1,'/Ch4/',treatref,'/Ch/'));
+                                       end
+%                                        if ~exist(strcat(folderSave2,treatref,'/Ch5/'))
+%                                            mkdir(strcat(folderSave2,treatref,'/Ch5/'));
+%                                        end               
+                                       
+                                       if ~exist(strcat(folderSave1,'/Ch5/',treatref,'/Ch/'))
+                                           mkdir(strcat(folderSave1,'/Ch5/',treatref,'/Ch/'));
                                         end
-                                       if ~exist(strcat(folderMain,'/Ch3/'))
-                                           mkdir(strcat(folderMain,'/Ch3/'));
-                                       end
-                                       if ~exist(strcat(folderMain,'/Ch4/'))
-                                           mkdir(strcat(folderMain,'/Ch4/'));
-                                       end
-                                       if ~exist(strcat(folderMain,'/Ch5/'))
-                                           mkdir(strcat(folderMain,'/Ch5/'));
-                                       end                                       
-                                        imwrite(Ch1Im, strcat(folderMain,'/Ch1/',num2str(imcount),'.png'))
-                                        imwrite(Ch2Im, strcat(folderMain,'/Ch2/',num2str(imcount),'.png'))
-                                        imwrite(Ch3Im, strcat(folderMain,'/Ch3/',num2str(imcount),'.png'))
-                                        imwrite(Ch4Im, strcat(folderMain,'/Ch4/',num2str(imcount),'.png'))
-                                        imwrite(Ch5Im, strcat(folderMain,'/Ch5/',num2str(imcount),'.png'))
+%                                         imwrite(Ch1Im, strcat(folderSave2, treatref, '/Ch1/',num2str(imcount),'.png'))
+%                                         imwrite(Ch2Im, strcat(folderSave2, treatref, '/Ch2/',num2str(imcount),'.png'))
+%                                         imwrite(Ch3Im, strcat(folderSave2, treatref, '/Ch3/',num2str(imcount),'.png'))
+%                                         imwrite(Ch4Im, strcat(folderSave2, treatref, '/Ch4/',num2str(imcount),'.png'))
+%                                         imwrite(Ch5Im, strcat(folderSave2, treatref, '/Ch5/',num2str(imcount),'.png'))
+                                        
+                                        
+                                        
+                                        imwrite(Ch1Im, strcat(folderSave1,'/Ch1/', treatref,'/Ch/', num2str(imcount),'.png'))
+                                        imwrite(Ch2Im, strcat(folderSave1,'/Ch2/', treatref,'/Ch/', num2str(imcount),'.png'))
+                                        imwrite(Ch3Im, strcat(folderSave1,'/Ch3/', treatref,'/Ch/', num2str(imcount),'.png'))
+                                        imwrite(Ch4Im, strcat(folderSave1,'/Ch4/', treatref,'/Ch/', num2str(imcount),'.png'))
+                                        imwrite(Ch5Im, strcat(folderSave1,'/Ch5/', treatref,'/Ch/', num2str(imcount),'.png'))
 
-                                        imcount=imcount+1
+                                        imcount=imcount+1;
                                     end
                                 end
                             end
@@ -99,11 +163,11 @@ for Im = 1:size(FileList, 1)
                 end
             end
             end
-            
+        end
         end
         %MaskM=im2double(MaskM);
 
-        if ~exist(int2str(name))
+        if ~exist(int2str(name1))
            %mkdir(strcat(folderMain,name));
         end
         

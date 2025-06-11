@@ -25,7 +25,7 @@ function[CentImages, Centroids]=GetCentImages(Image, MaskM, name)
                     Centery=abs(col/2);
                     Crop=[Centerx-100,Centery-100, 200, 200];
 
-                    filename=sprintf('SegIm%04d',i);
+                    filename=sprintf('SegIm%04d',i)
                     ShiftX=Centerx - round(Centroid.Centroid(1));
                     ShiftY=Centery - round((Centroid.Centroid(2)));
                     ShiftedCent = circshift(SegIm,[ShiftY,ShiftX]);
@@ -42,8 +42,12 @@ function[CentImages, Centroids]=GetCentImages(Image, MaskM, name)
                     ImageAll(:,:,count)=(AdjBGSub);
                     count=count+1
                     CentroidAll=[CentroidAll; Centroid];
+                    if(isempty(CentroidAll))
+                        print('Wait Here')
             %end
+                    end
+            CentImages=ImageAll;
         end
-        CentImages=ImageAll;
-        Centroids=struct2table(CentroidAll);
-end
+            Centroids=struct2table(CentroidAll);
+        end
+
