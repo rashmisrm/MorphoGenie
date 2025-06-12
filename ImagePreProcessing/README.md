@@ -52,8 +52,6 @@ To run the MorphoGenie test script on processed images:
 1. Place the `Cropped` folder in the `ProcessedData` folder located in the root directory.
 2. Ensure the files are organized according to the specified folder structure.
 
-This setup will allow you to successfully execute the test script. Let me know if you need further clarification!
-
 
 
 
