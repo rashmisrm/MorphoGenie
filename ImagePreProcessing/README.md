@@ -49,7 +49,7 @@ The code is organized in individual folders based on segmentation requirements. 
 
 To run the MorphoGenie test script on processed images:
 
-1. Place the `Cropped` folder in the `ProcessedData` folder located in the root directory.
+1. Place the `Cropped` folder in the `ProcessedData` folder in the root directory.
 2. Ensure the files are organized according to the specified folder structure.
 
 ### Folder structure
