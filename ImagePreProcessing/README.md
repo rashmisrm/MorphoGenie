@@ -45,7 +45,14 @@ The code is organized in individual folders based on segmentation requirements. 
 - Single-Channel Datasets (e.g., EMT): Processed images are saved in a single folder.
 - Multi-Channel Datasets (e.g., Cell Painting): Processed images are saved in separate folders for each channel (5 folders in total). 
 - Each folder contains images named after a unique cell ID, with the same ID used across all channels. For example, Cell #1's images would be named `1.png` in each of the 5 channel folders.
-To run the MorphoGenie test script on the processed images, place the 'Cropped' folder in the 'ProcessedData' folder in the root directory.
+
+
+To run the MorphoGenie test script on processed images:
+
+1. Place the `Cropped` folder in the `ProcessedData` folder located in the root directory.
+2. Ensure the files are organized according to the specified folder structure.
+
+This setup will allow you to successfully execute the test script. Let me know if you need further clarification!
 
 
 
