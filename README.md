@@ -40,7 +40,7 @@ Setting up the test environment and installing dependencies can take around 10 m
 
 ### Dataset
 
-The processed datasets for testing are available [here.](https://hkuhk-my.sharepoint.com/:f:/g/personal/rashmism_hku_hk/El4Ew1HJP5pGgThVYwuaN6kB9cXScl89KL0RSCxRPQr-vg?e=p2cgTt)
+The processed datasets for testing are available [here.](https://drive.google.com/drive/u/1/folders/1I6GRmjfC3dfNsKGk-PVeQlEAlo1ovP7P)
 
 | Dataset       | Folder Name| Imaging Modality |
 | ------------- | -----------|------------------|
@@ -83,7 +83,7 @@ Preprocessing steps are detailed in [ImagePreProcessing](https://github.com/rash
 
 ## Testing with pre-trained models
 
-Download and extract the Models.7z file [pre-trained model](https://hkuhk-my.sharepoint.com/my?id=%2Fpersonal%2Frashmism%5Fhku%5Fhk%2FDocuments%2FMorphoGenieLink%2FModels&ga=1). Place the 'Models' folder in the root directory.
+Download and extract the Models.7z file [pre-trained model](https://drive.google.com/drive/u/1/folders/1lQFWlnD5c0JLs_I2289HIl8Kxgd3qLg_). Place the 'Models' folder in the root directory.
 
 
 Load the and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
