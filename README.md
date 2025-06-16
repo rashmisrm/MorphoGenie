@@ -89,7 +89,7 @@ Preprocessing steps are detailed in [ImagePreProcessing](https://github.com/rash
 Download and extract the Models.7z file [pre-trained model](https://drive.google.com/drive/u/1/folders/1lQFWlnD5c0JLs_I2289HIl8Kxgd3qLg_). Place the 'Models' folder in the root directory.
 
 
-Load the and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
+Load the pre-trained model and select the dataset for testing. This step generates Latent.csv and Label.csv for downstream analysis such as cell data visualization, classification and interpretation tasks. 
 
 ```
 python MorphoGenie_Test.py --config cells_650.yaml --Traversal_Save=False --Train_Dataset=LC --Test_Dataset=LC
