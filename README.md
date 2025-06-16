@@ -5,6 +5,7 @@ The intersection of advanced microscopy and machine learning is transforming the
 MorphoGenie addresses these challenges by introducing an unsupervised deep-learning framework for single-cell morphological profiling. This innovative tool generates high-fidelity image reconstructions, enabling disentangled representation learning and a compact, interpretable latent space. This allows for the extraction of biologically meaningful features without human annotation, overcoming the "curse of dimensionality" inherent in manual methods.
 
 MorphoGenie standsout in three key attributes: 
+
 *1. High-fidelity Image Reconstruction:* MorphoGenie utilizes a hybrid architecture that capitalizes on the unparalleled strengths of the variant of variational Autoencoders (VAEs) and generative Adversarial Networks (GANs) to achieve interpretable, high-quality cell image generation. 
 
 *2. Interpretability:* MorphoGenie adopts a VAE-based method to learn a compact, interpretable, and transferable disentangled representation for single-cell morphological analysis. In contrast to the prior work, we propose a novel technique for interpreting the learned representation by extracting handcrafted features from reconstructed images produced by latent traversals, facilitating the discovery of biologically meaningful inferences, especially the heterogeneities of cell types and lineages. 
