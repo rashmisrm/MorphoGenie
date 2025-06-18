@@ -263,7 +263,8 @@ class Solver(object):
         self.pbar.close()
 
     def visualize_recon(self):
-        outdir = os.path.join('D:/Letitia/FactorVAE-master/outputs/',self.name,str(self.global_iter),'Recon')
+
+        outdir = os.path.join('./outputs/',self.name,str(self.global_iter),'Recon')
         recon = os.path.join(outdir,'Recon')
         
         if not os.path.exists(outdir):
@@ -349,7 +350,7 @@ class Solver(object):
                         #opts=dict(title=str(self.global_iter)))
         
     def traversal_save(self, limit=3, inter=2/3, loc=-1):
-        traversal =  os.path.join('D:/Letitia/FactorVAE-master/outputs/',self.name,str(self.global_iter),'Traversal')
+        traversal =  os.path.join('./outputs/',self.name,str(self.global_iter),'Traversal')
 
             
         if not os.path.exists(traversal):
@@ -584,10 +585,13 @@ class Solver(object):
         LabelAll=np.concatenate((Label1, Label2), axis=1)
         LatentZAll=np.squeeze(LatentZAll)
         LatentZAll=np.squeeze(LatentZAll)
+	SaveFolder='./Results/LatentPred/'
+	os.makedirs(outputs, exist_ok=True)
+
         LatentZ=pd.DataFrame(LatentZAll)
-        LatentZ.to_csv('./Latent.csv')
+        LatentZ.to_csv(SaveFolder+'Latent.csv')
         LabelAll=pd.DataFrame(LabelAll)
-        LabelAll.to_csv('./Label.csv')
+        LabelAll.to_csv(SaveFolder+'Label.csv')
 
 
             
