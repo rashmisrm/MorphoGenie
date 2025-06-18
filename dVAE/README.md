@@ -18,7 +18,7 @@ pip install visdom tqdm matplotlib
 ```
 <br>
 
-Preprocess steps include Centring the cells followed by cropping and resizing.
+Preprocess steps include Centering the cells followed by cropping and resizing.
 
 ### Usage
 
