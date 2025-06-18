@@ -29,7 +29,7 @@ Tested on windows
 Install the pytorch cuda version suitable for the OS in MorphoGenie environment [Link](https://pytorch.org/get-started/locally/). 
 
 ```
-conda create —name MorphoGenie python=3.8.10
+conda create --name MorphoGenie python=3.8.10
 
 conda activate MorphoGenie
 
