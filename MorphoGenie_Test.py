@@ -298,7 +298,8 @@ for x_true, path, label in data_loader:
     mu, c_lat=dis_evaluator.predict_latent(x_true)
     if args.Traversal_Save=='True':
         if epoch_idx < 50:
-            
+            print('Saving traversals')
+            print(epoch_idx)
             travN =  epoch_idx
             travN_dir = os.path.join(travN_MainDir, str(travN))
             #print('checkpoint_dir',checkpoint_dir)
@@ -334,50 +335,19 @@ sns.set(font_scale = 1)
 plt.scatter(embedding[:,0], embedding[:,1], s=150)
 plt.legend(markerscale=4, fontsize=50)
 
-mu_gen_A=torch.vstack(mu_gen_All)
-mu_gen_A=mu_gen_A.detach().numpy()
+#mu_gen_A=torch.vstack(mu_gen_All)
+#mu_gen_A=mu_gen_A.detach().numpy()
 
-embedding=dis_evaluator.reduce_latent2d(dis_evaluator.normalize_matrix(mu_gen_A))
-df_F=[]
- 
-#data_real=np.hstack((embedding, labelAll[:]))
-df1 = pd.DataFrame(embedding, columns=['col1','col2'])
-df2 = pd.DataFrame(label1, columns=['ClassLabels1'])
-df3 = pd.DataFrame(label2, columns=['ClassLabels2'])
-df_F=pd.concat([df1, df2, df3],axis=1)
+#embedding=dis_evaluator.reduce_latent2d(dis_evaluator.normalize_matrix(mu_gen_A))
+#df_F=[]
 
 
 
-plt.figure(figsize=(10,10))
-sns.set(font_scale = 1)
-sns.scatterplot(df1)
-plt.legend(markerscale=4, fontsize=50)
-### Reconstruction
 
 ### Latent traversals for Interpretability
 
-mu, c_lat=dis_evaluator.predict_latent(x_true)
-#looping traversals
-#for travN in range(1, len(x_real)):
-for travN in range(1, 25):
-
-    travN_dir = os.path.join(travN_MainDir, str(travN))
-    #print('checkpoint_dir',checkpoint_dir)
-    # Create missing directories
-    if not os.path.exists(travN_dir):
-        os.makedirs(travN_dir)
-        
-    c_lat_sample=c_lat[travN]
-    z_sample=ztest[0]
-    c_lat_sample=c_lat_sample.unsqueeze(0)
-    z_sample=z_sample.unsqueeze(0)
-    travN
-    ncol=dis_evaluator.traverse_c1z1(travN, z_sample, c_lat_sample, save='True', TravImRet='False')
-
-
-
 sns.set(font_scale=1)
-dis_evaluator.DisentMetric(c_lat_sample)
+#dis_evaluator.DisentMetric(c_lat_sample)
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
@@ -407,7 +377,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_auc_score
 X=  mu_real_All
-X = mu_gen_A
+#X = mu_gen_A
 y=label1
 clf = LogisticRegression(solver="liblinear", random_state=0).fit(X, y)
 roc_auc_score(y, clf.predict_proba(X), multi_class='ovr')
