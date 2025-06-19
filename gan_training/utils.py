@@ -339,7 +339,7 @@ def return_data(args):
 
 
 def return_data_test(args):
-    name = args.Dataset
+    name = args.Test_Dataset
     imtype= args.datatype
     dset_dir = args.dset_dir
     
