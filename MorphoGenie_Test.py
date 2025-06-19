@@ -285,7 +285,7 @@ for x_true, path, label in data_loader:
     x_true=x_true.to(device)
 
     mu_real, logvar, c_real = fvae(x_true, encode_only=True)
-    print(c_real)
+    print(epoch_idx)
     
     recon_img=dis_evaluator.predict_image(c_real)
     recon_img=torch.stack(recon_img)
@@ -296,7 +296,7 @@ for x_true, path, label in data_loader:
     
     
     mu, c_lat=dis_evaluator.predict_latent(x_true)
-    if args.Traversal_Save:
+    if args.Traversal_Save=='True':
         if epoch_idx < 50:
             
             travN =  epoch_idx
@@ -310,8 +310,8 @@ for x_true, path, label in data_loader:
             z_sample=ztest[0]
             #c_lat_sample=c_lat_sample.unsqueeze(0)
             z_sample=z_sample.unsqueeze(0)
-            travN
-            ncol=dis_evaluator.traverse_c1z1(travN, z_sample, c_lat_sample, save='True', save_type='idgan', TravImRet='True', cmap='viridis')
+            print(travN)
+            ncol=dis_evaluator.traverse_c1z1(travN, z_sample, c_lat_sample, save=args.Traversal_Save, save_type='idgan', TravImRet='True', cmap='viridis')
 
 ## Sorting the feature tables according to order generated in the ImageGenerator 
     label1.append(label)
@@ -319,7 +319,6 @@ for x_true, path, label in data_loader:
 
 label1=np.hstack(label1)
 label2=np.hstack(label2)
-
 mu_real_All=np.vstack(mu_real_All)
 embedding=dis_evaluator.reduce_latent2d(dis_evaluator.normalize_matrix(mu_real_All),dim_red=('umap'))
 df_F=[]
