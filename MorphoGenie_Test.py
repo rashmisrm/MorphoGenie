@@ -12,6 +12,14 @@ from gan_training.utils import return_data_test
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+
+from torchmetrics.functional.classification import multiclass_auroc
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+
 from gan_training import utils
 from gan_training.train import Trainer, update_average
 from gan_training.logger import Logger
@@ -19,6 +27,8 @@ from gan_training.checkpoints_test import CheckpointIO
 from gan_training.inputs import get_dataset
 from gan_training.distributions import get_ydist, get_zdist
 from gan_training.eval_test import DisentEvaluator, Evaluator
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix,plot_confusion_matrix
+
 from gan_training.config import (
     load_config, build_models, build_optimizers, build_lr_scheduler,
 )
@@ -267,8 +277,8 @@ trainer = Trainer(
 # Training loop
 tqdm.write('Start Test...')
 pbar = tqdm(total=max_iter)
-if it > 0:
-    pbar.update(it)
+#if it > 0:
+#    pbar.update(it)
 mu_real_Dump=[]
 mu_gen_Dump=[]
 mu_real_All=[]
@@ -286,20 +296,17 @@ for x_true, path, label in data_loader:
 
     mu_real, logvar, c_real = fvae(x_true, encode_only=True)
     print(epoch_idx)
-    
+    mu_real_All.append(mu_real.detach().cpu())
     recon_img=dis_evaluator.predict_image(c_real)
     recon_img=torch.stack(recon_img)
     mu_gen, logvar_gen, c_gen=fvae(recon_img, encode_only=True)
     
-    mu_real_All.append(mu_real.detach().cpu())
-    mu_gen_All.append(mu_gen.detach().cpu())
     
     
     mu, c_lat=dis_evaluator.predict_latent(x_true)
     if args.Traversal_Save=='True':
         if epoch_idx < 50:
             print('Saving traversals')
-            print(epoch_idx)
             travN =  epoch_idx
             travN_dir = os.path.join(travN_MainDir, str(travN))
             #print('checkpoint_dir',checkpoint_dir)
@@ -330,28 +337,22 @@ df2 = pd.DataFrame(label1, columns=['ClassLabels1'])
 df3 = pd.DataFrame(label2, columns=['ClassLabels2'])
 df_F=pd.concat([df1, df2, df3],axis=1)
 
-plt.figure(figsize=(10,10))
-sns.set(font_scale = 1)
-plt.scatter(embedding[:,0], embedding[:,1], s=150)
-plt.legend(markerscale=4, fontsize=50)
 
-#mu_gen_A=torch.vstack(mu_gen_All)
-#mu_gen_A=mu_gen_A.detach().numpy()
+LatentZ=pd.DataFrame(mu_real_All)
 
-#embedding=dis_evaluator.reduce_latent2d(dis_evaluator.normalize_matrix(mu_gen_A))
-#df_F=[]
+#Save Predicted Latent Features to enable downstream analysis
+LatentZ.to_csv('./outputs/Mix_Latent.csv')
+LabelAll=pd.DataFrame(label1)
+LabelAll.to_csv('./outputs/Mix_Label.csv')
 
-
+mu_real_All=np.vstack(mu_real_All)
+LatentZ=pd.DataFrame(mu_real_All)
 
 
-### Latent traversals for Interpretability
 
-sns.set(font_scale=1)
+sns.set(font_scale=2)
 #dis_evaluator.DisentMetric(c_lat_sample)
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
-import pandas as pd
+
 # Split dataset into training set and test set
 plt.grid('off')
 X_train, X_test, y_train, y_test = train_test_split(mu_real_All, label1, test_size=0.3, random_state=1)
@@ -359,25 +360,67 @@ clf = DecisionTreeClassifier(criterion='gini', max_depth=3)
 clf.fit(X_train, y_train)  # celltype
 df_X=pd.DataFrame(mu_real_All)
 pd.Series(clf.feature_importances_, index=df_X.columns).plot.bar(color='steelblue', figsize=(12, 6))
+
+plt.show()
+y_pred = clf.predict(X_test)
+print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
+
+plt.figure(figsize=(10,10))
+plt.title('Latent Profile')
+#g1=sns.clustermap(df_X, standard_scale=1, figsize=(30,150),xticklabels=df_X.columns,linewidths=8,tree_kws=dict(linewidths=1))
+sns.heatmap(mu_real_All, cmap="PiYG_r")
+
+
+plt.figure(figsize=(10,10))
+sns.set_style("whitegrid")
+sns.scatterplot(data=df_F, x="col1", y="col2", s=50, hue="ClassLabels1", palette=('Set1'))
+plt.legend(markerscale=3, fontsize=30)
+
+
+
+# Split dataset into training set and test set
+
+
+sns.set(font_scale=2)
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import pandas as pd
+plt.grid(None)
+X_train, X_test, y_train, y_test = train_test_split(mu_real_All, label1, test_size=0.2, random_state=1)
+
+clf = DecisionTreeClassifier(criterion='gini', max_depth=7)
+clf.fit(X_train, y_train)  # celltype
+pd.Series(clf.feature_importances_, index=LatentZ.columns).plot.bar(color='steelblue', figsize=(12, 6))
 plt.show()
 y_pred = clf.predict(X_test)
 
-print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
+#X=  mu_real_All
 
 
-sns.set(color_codes=True) 
-#g1=sns.clustermap(df_X, standard_scale=1, figsize=(30,150),xticklabels=df_X.columns,linewidths=8,tree_kws=dict(linewidths=1))
-g1=sns.clustermap(mu_real_All, standard_scale=1, cmap='PiYG_r')
-sns.heatmap(mu_real_All,cmap="PiYG_r")
 
 
-from torchmetrics.functional.classification import multiclass_auroc
-from sklearn.linear_model import LogisticRegression
+plt.figure(figsize=(5,5))
+ax = plt.subplot()
 
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_auc_score
-X=  mu_real_All
-#X = mu_gen_A
-y=label1
-clf = LogisticRegression(solver="liblinear", random_state=0).fit(X, y)
-roc_auc_score(y, clf.predict_proba(X), multi_class='ovr')
+sns.set(font_scale=1.0) # Adjust to fit
+y_pred= clf.predict(X_test)
+
+cm=confusion_matrix(y_test, y_pred)
+
+df=pd.DataFrame(cm)
+cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
+sns.heatmap(cmn, annot=True, fmt='.2f', ax=ax, cmap="Reds");  # annot=True to annotate cells
+
+#plt.axis('off')
+
+# labels, title and ticks
+ax.set_xlabel('Predicted labels');
+ax.set_ylabel('Observed labels');
+ax.set_title('Confusion Matrix');
+#ax.xaxis.set_ticklabels(label1);
+#ax.yaxis.set_ticklabels(label1);
+
+
+plt.show()
