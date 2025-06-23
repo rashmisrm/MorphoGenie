@@ -255,8 +255,8 @@ it = epoch_idx = -1
 
 # Load checkpoint if existant
 it = checkpoint_io.load(os.getcwd()+gan_ckpt_path)
-if it != -1:
-    logger.load_stats('stats.p')
+#if it != -1:
+#    logger.load_stats('stats.p')
 
 # Reinitialize model average if needed
 if (config['training']['take_model_average']
