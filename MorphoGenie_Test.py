@@ -216,12 +216,12 @@ checkpoint_io.register_modules(
 )
 
 # Logger
-logger = Logger(
-    log_dir=path.join(out_dir, 'logs'),
-    img_dir=path.join(out_dir, 'imgs'),
-    monitoring=config['training']['monitoring'],
-    monitoring_dir=path.join(out_dir, 'monitoring')
-)
+#logger = Logger(
+#    log_dir=path.join(out_dir, 'logs'),
+#    img_dir=path.join(out_dir, 'imgs'),
+#    monitoring=config['training']['monitoring'],
+#    monitoring_dir=path.join(out_dir, 'monitoring')
+#)
 
 # Distributions
 cdist = get_zdist('gauss',args.c_dim, device=device)
