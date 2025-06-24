@@ -309,11 +309,7 @@ for x_true, path, label in data_loader:
             print('Saving traversals')
             travN =  epoch_idx
             travN_dir = os.path.join(travN_MainDir, str(travN))
-            #print('checkpoint_dir',checkpoint_dir)
-            # Create missing directories
-            if not os.path.exists(travN_dir):
-                os.makedirs(travN_dir)
-                
+            #print('checkpoint_dir',checkpoint_dir)              
             c_lat_sample=c_lat
             z_sample=ztest[0]
             #c_lat_sample=c_lat_sample.unsqueeze(0)
