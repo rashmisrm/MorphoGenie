@@ -344,8 +344,6 @@ LabelAll.to_csv('./outputs/Mix_Label.csv')
 mu_real_All=np.vstack(mu_real_All)
 LatentZ=pd.DataFrame(mu_real_All)
 
-
-
 sns.set(font_scale=2)
 #dis_evaluator.DisentMetric(c_lat_sample)
 
@@ -357,10 +355,10 @@ clf.fit(X_train, y_train)  # celltype
 df_X=pd.DataFrame(mu_real_All)
 pd.Series(clf.feature_importances_, index=df_X.columns).plot.bar(color='steelblue', figsize=(12, 6))
 
-plt.show()
 y_pred = clf.predict(X_test)
 print("Accuracy:", metrics.accuracy_score(y_test, y_pred))
 
+plt.show()
 plt.figure(figsize=(10,10))
 plt.title('Latent Profile')
 #g1=sns.clustermap(df_X, standard_scale=1, figsize=(30,150),xticklabels=df_X.columns,linewidths=8,tree_kws=dict(linewidths=1))
@@ -384,32 +382,25 @@ from sklearn import metrics
 import pandas as pd
 plt.grid(None)
 X_train, X_test, y_train, y_test = train_test_split(mu_real_All, label1, test_size=0.2, random_state=1)
-
+plt.show()
+plt.figure(figsize=(5,10))
 clf = DecisionTreeClassifier(criterion='gini', max_depth=7)
 clf.fit(X_train, y_train)  # celltype
 pd.Series(clf.feature_importances_, index=LatentZ.columns).plot.bar(color='steelblue', figsize=(12, 6))
-plt.show()
+
 y_pred = clf.predict(X_test)
 
-#X=  mu_real_All
 
-
-
-
+plt.show()
 plt.figure(figsize=(5,5))
 ax = plt.subplot()
-
 sns.set(font_scale=1.0) # Adjust to fit
 y_pred= clf.predict(X_test)
-
 cm=confusion_matrix(y_test, y_pred)
-
 df=pd.DataFrame(cm)
 cmn = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-
 sns.heatmap(cmn, annot=True, fmt='.2f', ax=ax, cmap="Reds");  # annot=True to annotate cells
 
-#plt.axis('off')
 
 # labels, title and ticks
 ax.set_xlabel('Predicted labels');
