@@ -5,16 +5,16 @@ This is a Pytorch implementation of FactorVAE proposed in Disentangling by Facto
 
 ### Dependencies
 
-Create a new conda envirinment and install the versions python 3.6.4, pytorch 1.0.0.
+Create a new conda envirinment and install pytorch 
 
 ```
-conda create --name dVAE-Env python=3.6.4
+conda create --name dVAE-Env 
 conda activate dVAE-Env
-conda install pytorch==1.0.0 torchvision==0.2.1 cuda100 -c pytorch
+
 ```
 
 ```
-pip install visdom tqdm matplotlib 
+pip install visdom tqdm matplotlib seaborn 
 ```
 <br>
 

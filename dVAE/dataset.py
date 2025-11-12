@@ -104,32 +104,23 @@ class CustomImageFolderCombine3(ImageFolder):
         i21 = random.choice(self.indices)
         i23 = i22 = i21
         path11 = self.imgs[i11][0]
-        name= os.path.split(path11)[0]
-        name= os.path.split(name)[0]
-        Type=os.path.split(name)[1]
-        name= os.path.split(name)[0]
-        name= os.path.split(name)[0]
-
-        path12 = name+'\\Ch2\\'+ Type + '\\Ch\\'+ os.path.basename(path11)
-        path13 = name+'\\Ch5\\'+ Type + '\\Ch\\'+ os.path.basename(path11)
+        match_string = 'CH1'
+        before, match, after = path11.partition(match_string)
+        
+        path12 = before+'\\CH2\\'+ after
+        path13 = before+'\\CH3\\'+ after
 
         path21 = self.imgs[i21][0]
         
-        name= os.path.split(path21)[0]
-        name= os.path.split(name)[0]
-        Type=os.path.split(name)[1]
-        name= os.path.split(name)[0]
-        name= os.path.split(name)[0]
+        before, match, after = path21.partition(match_string)
+        
+        path22 = before+'\\CH2\\'+ after
+        path23 = before+'\\CH3\\'+ after
 
 
-        path22 = name+'\\Ch2\\'+ Type + '\\Ch\\'+ os.path.basename(path21)
-        path23 = name+'\\Ch5\\'+ Type + '\\Ch\\'+ os.path.basename(path21)
+
         #path22 = '..\\data\\ProcessedData\\CPA\Treatment1\\Ch2\\'+os.path.basename(path21)
         #path23 = '..\\data\\ProcessedData\\CPA\Treatment1\\Ch3\\'+os.path.basename(path21)
-
-        img1S2 = self.loader(path21)
-        img2S2 = self.loader(path22)
-        img3S2 = self.loader(path23)
 
         #print('rashmi')
         img1S1 = self.loader(path11)
@@ -240,30 +231,29 @@ class CustomImageFolderCombine3Test(ImageFolder):
         i21 = random.choice(self.indices)
         i23 = i22 = i21
         path11 = self.imgs[i11][0]
-        name= os.path.split(path11)[0]
-        name= os.path.split(name)[0]
-        Type=os.path.split(name)[1]
-        name= os.path.split(name)[0]
-        name= os.path.split(name)[0]
+        match_string = 'CH1'
+        before, match, after = path11.partition(match_string)
+        
+        path12 = before+'CH2'+ after
+        path13 = before+'CH3'+ after
+        
+        before, match, after = path11.partition(match_string)
 
-        path12 = name+'\\Ch2\\'+ Type + '\\Ch\\'+ os.path.basename(path11)
-        path13 = name+'\\Ch5\\'+ Type + '\\Ch\\'+ os.path.basename(path11)
 
 
-  
         #print('rashmi')
         img1S1 = self.loader(path11)
         img2S1 = self.loader(path12)
         img3S1 = self.loader(path13)
 
+        
         if self.transform is not None:
             img1S1 = self.transform(img1S1)
             img2S1 = self.transform(img2S1)
             img3S1 = self.transform(img3S1)
-            
-            
+                        
+
         img1=torch.cat((img1S1, img2S1, img3S1),0)
-        
         name= os.path.split(path11)
         name=os.path.split(name[0])
         name1=os.path.split(name[0])
@@ -271,8 +261,6 @@ class CustomImageFolderCombine3Test(ImageFolder):
 
         Label1=name1[1]
         Label2=name2[1]
-        
-            
         return img1, Label1, Label2
     
 class CustomImageFolderCombine5Test(ImageFolder):
